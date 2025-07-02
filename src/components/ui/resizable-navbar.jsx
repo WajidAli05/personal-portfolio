@@ -9,6 +9,7 @@ import {
 } from "motion/react";
 
 import React, { useRef, useState } from "react";
+import logo from "../../assets/logo.jpg";
 
 
 export const Navbar = ({
@@ -193,13 +194,46 @@ export const NavbarLogo = () => {
   return (
     <a
       href="#"
-      className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black">
-      <img
-        src="https://assets.aceternity.com/logo-dark.png"
-        alt="logo"
-        width={30}
-        height={30} />
-      <span className="font-medium text-black dark:text-white">Startup</span>
+      className="relative z-20 mr-4 flex items-center space-x-3 px-3 py-2 text-sm font-normal text-black group"
+    >
+      {/* Glowing background container */}
+      <div
+        className="
+          relative
+          p-1
+          rounded-full
+          bg-gradient-to-tr
+          from-purple-500 via-pink-500 to-yellow-500
+          animate-spin-slow
+          group-hover:animate-none
+          transition-all
+          duration-500
+          shadow-2xl
+        "
+      >
+        {/* Glassy image container */}
+        <div
+          className="
+            bg-white/10 backdrop-blur-md rounded-full p-[2px]
+            transition-all duration-500 ease-in-out
+            group-hover:scale-110 group-hover:rotate-3
+            shadow-lg
+          "
+        >
+          <img
+            src={logo}
+            alt="logo"
+            width={40}
+            height={40}
+            className="
+              rounded-full
+              ring-2 ring-white/20
+              group-hover:ring-4 group-hover:ring-pink-300
+              transition-all duration-500
+            "
+          />
+        </div>
+      </div>
     </a>
   );
 };
