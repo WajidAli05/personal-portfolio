@@ -13,6 +13,8 @@ import {
 } from "./components/ui/resizable-navbar";
 import { HeroParallax } from "./components/ui/hero-parallax";
 import { MacbookScroll } from "./components/ui/macbook-scroll";
+import { Timeline } from "./components/ui/timeline";
+
 
 // Sample navigation items
 const navItems = [
@@ -107,6 +109,57 @@ const products = [
   }
 ];
 
+const serviceData = [
+  {
+    title: "Frontend Development",
+    content: (
+      <p className="text-neutral-700 dark:text-neutral-300">
+        I build responsive user interfaces using <strong>React.js</strong>, <strong>HTML5</strong>, <strong>CSS3</strong>, and <strong>JavaScript (ES6+)</strong>. I enhance styling with <strong>Tailwind CSS</strong> or <strong>Material UI</strong>, and incorporate smooth animations using <strong>Framer Motion</strong> or <strong>GSAP</strong>.
+      </p>
+    ),
+    images: ["./src/assets/frontend1.jpg", "./src/assets/frontend2.jpg"],
+  },
+  {
+    title: "Backend & API Development",
+    content: (
+      <p className="text-neutral-700 dark:text-neutral-300">
+        I develop scalable backend services using <strong>Node.js</strong> and <strong>Express.js</strong>. I implement secure authentication with <strong>JWT</strong> or <strong>OAuth</strong>, and ensure data validation with <strong>Zod</strong> or <strong>Yup</strong>.
+      </p>
+    ),
+    images: ["./src/assets/backend1.jpg", "./src/assets/backend2.jpg"],
+  },
+  {
+    title: "Full Stack Application Development",
+    content: (
+      <p className="text-neutral-700 dark:text-neutral-300">
+        I craft end-to-end web applications using <strong>Next.js</strong> for 
+        performance and SEO, <strong>React.js</strong> for dynamic UIs, and <strong>
+          Tailwind CSS</strong> for modern styling. I build robust APIs with <strong>Node.js
+            </strong> and <strong>Express.js</strong>, secure them using <strong>JWT</strong>, 
+            <strong>OAuth</strong>, or <strong>NextAuth.js</strong>, and manage data with <strong>
+              MongoDB</strong> or <strong>PostgreSQL</strong>. My focus is on creating responsive,
+               fast, and secure full stack solutions.
+      </p>
+    ),
+    images: ["./src/assets/fullstack1.png", "./src/assets/fullstack2.png"],
+  },
+  {
+    title: "Mobile Application Development",
+    content: (
+      <p className="text-neutral-700 dark:text-neutral-300">
+          I build cross-platform mobile applications using <strong>React Native</strong>, 
+          enabling seamless performance on both <strong>iOS</strong> and <strong>Android</strong>. 
+          I design clean, responsive UIs with <strong>React Navigation</strong> and <strong>Tailwind CSS 
+            (via NativeWind)</strong>, manage state using <strong>Redux</strong> or <strong>Context API</strong>, 
+            and connect to RESTful or GraphQL APIs for dynamic content. With secure <strong>
+              authentication</strong> and smooth native integrations, I deliver fast, user-friendly 
+              mobile experiences.
+      </p>
+    ),
+    images: ["./src/assets/mobile1.png", "./src/assets/mobile2.png"],
+  },
+];
+
 function App() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
@@ -118,53 +171,55 @@ function App() {
     setIsMobileNavOpen(false);
   };
 
-  return (
-    <div className="relative w-full">
-      <Navbar className="top-2">
-        {/* Desktop Navigation */}
-        <NavBody>
-          <div className="flex w-full flex-row items-center justify-between">
-            <NavbarLogo />
-            <NavItems 
-              items={navItems} 
-              onItemClick={() => {}}
-            />
-          </div>
-        </NavBody>
+return (
+  <div className="relative w-full">
+    <Navbar className="top-2">
+      {/* Desktop Navigation */}
+      <NavBody>
+        <div className="flex w-full flex-row items-center justify-between">
+          <NavbarLogo />
+          <NavItems items={navItems} onItemClick={() => {}} />
+        </div>
+      </NavBody>
 
-        {/* Mobile Navigation */}
-        <MobileNav>
-          <MobileNavHeader>
-            <NavbarLogo />
-            <MobileNavToggle 
-              isOpen={isMobileNavOpen}
-              onClick={handleMobileNavToggle}
-            />
-          </MobileNavHeader>
-          
-          <MobileNavMenu 
+      {/* Mobile Navigation */}
+      <MobileNav>
+        <MobileNavHeader>
+          <NavbarLogo />
+          <MobileNavToggle
             isOpen={isMobileNavOpen}
-            onClose={handleMobileNavClose}
-          >
-            {navItems.map((item, idx) => (
-              <a
-                key={idx}
-                href={item.link}
-                onClick={handleMobileNavClose}
-                className="flex w-full items-center justify-start rounded-md px-2 py-2 text-neutral-700 hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-800"
-              >
-                {item.name}
-              </a>
-            ))}
-          </MobileNavMenu>
-        </MobileNav>
-      </Navbar>
+            onClick={handleMobileNavToggle}
+          />
+        </MobileNavHeader>
 
-      {/* Hero Parallax Section */}
-      <HeroParallax products={products} />
+        <MobileNavMenu isOpen={isMobileNavOpen} onClose={handleMobileNavClose}>
+          {navItems.map((item, idx) => (
+            <a
+              key={idx}
+              href={item.link}
+              onClick={handleMobileNavClose}
+              className="flex w-full items-center justify-start rounded-md px-2 py-2 text-neutral-700 hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-800"
+            >
+              {item.name}
+            </a>
+          ))}
+        </MobileNavMenu>
+      </MobileNav>
+    </Navbar>
+
+    {/* Hero Parallax Section */}
+    <HeroParallax products={products} />
+
+    {/* Macbook Scroll Section */}
+    <div className="mb-150"> {/* ⬅️ Add spacing here (adjust mb-60 if needed) */}
       <MacbookScroll />
     </div>
-  );
+
+    {/* Timeline Section */}
+    <Timeline data={serviceData} />
+  </div>
+);
+
 }
 
 export default App;
