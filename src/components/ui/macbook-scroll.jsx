@@ -24,7 +24,6 @@ import { IconCommand } from "@tabler/icons-react";
 import { IconCaretLeftFilled } from "@tabler/icons-react";
 import { IconCaretDownFilled } from "@tabler/icons-react";
 import logo from '../../assets/logo.jpg'
-import { CardContainer, CardBody, CardItem } from './3d-card';
 
 export const MacbookScroll = ({
   src,
@@ -56,7 +55,7 @@ const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   return (
     <div
       ref={ref}
-      className="flex min-h-[200vh] shrink-0 scale-[0.35] transform flex-col items-center justify-start py-0 [perspective:800px] sm:scale-50 md:scale-100 md:py-80">
+      className="flex min-h-[200vh] shrink-0 scale-[0.35] transform flex-col items-center justify-start py-0 [perspective:800px] sm:scale-50 md:scale-100 md:py-20">
       {/* Lid */}
       <Lid
         src={src}
@@ -121,31 +120,7 @@ export const Lid = ({
           </span>
         </div>
       </div>
-      <CardContainer className="inter-var absolute inset-0 h-96 w-[32rem] p-2">
-        <CardBody className="h-full w-full rounded-2xl bg-[#010101]">
-          <CardItem translateZ="80" className="h-full w-full">
-            <motion.div
-              style={{
-                scaleX: scaleX,
-                scaleY: scaleY,
-                rotateX: rotate,
-                translateY: translate,
-                transformStyle: "preserve-3d",
-                transformOrigin: "top",
-              }}
-              className="relative h-full w-full rounded-lg overflow-hidden"
-            >
-              <div className="absolute inset-0 rounded-lg bg-[#272729]" />
-              <img
-                src={logo}
-                alt="wajid ali logo"
-                className="absolute inset-0 h-full w-full object-cover object-left-top rounded-lg"
-              />
-            </motion.div>
-          </CardItem>
-        </CardBody>
-      </CardContainer>
-      {/* <motion.div
+      <motion.div
         style={{
           scaleX: scaleX,
           scaleY: scaleY,
@@ -160,7 +135,7 @@ export const Lid = ({
           src={logo}
           alt="wajid ali logo"
           className="absolute inset-0 h-full w-full rounded-lg object-cover object-left-top" />
-      </motion.div> */}
+      </motion.div>
     </div>
   );
 };

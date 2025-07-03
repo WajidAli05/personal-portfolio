@@ -14,8 +14,6 @@ import {
 import { HeroParallax } from "./components/ui/hero-parallax";
 import { MacbookScroll } from "./components/ui/macbook-scroll";
 import { Timeline } from "./components/ui/timeline";
-import { CardContainer } from "./components/ui/3d-card";
-
 
 // Sample navigation items
 const navItems = [
@@ -212,7 +210,7 @@ return (
     <HeroParallax products={products} />
 
     {/* Macbook Scroll Section */}
-    <div className="mb-150"> 
+    <div className="mb-0"> 
       <MacbookScroll />
     </div>
 
