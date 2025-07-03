@@ -24,10 +24,11 @@ export const HeroParallax = ({
   const opacity = useSpring(useTransform(scrollYProgress, [0, 0.2], [0.2, 1]), springConfig);
   const rotateZ = useSpring(useTransform(scrollYProgress, [0, 0.2], [20, 0]), springConfig);
   const translateY = useSpring(useTransform(scrollYProgress, [0, 0.2], [-700, 500]), springConfig);
+  
   return (
     <div
       ref={ref}
-      className="h-[300vh] py-0 antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d] mb-30">
+      className="h-[330vh] py-0 antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d] mb-0 overflow-hidden">
       <Header />
       <motion.div
         style={{
@@ -36,7 +37,7 @@ export const HeroParallax = ({
           translateY,
           opacity,
         }}
-        className="">
+        className="overflow-hidden">
         <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20">
           {firstRow.map((product) => (
             <ProductCard product={product} translate={translateX} key={product.title} />
