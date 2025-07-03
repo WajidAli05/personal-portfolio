@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
-
-
+import { ColourfulText } from "./colourful-text";
+import { ContainerTextFlip } from "./container-text-flip";
 
 export const HeroParallax = ({
   products
@@ -27,7 +27,7 @@ export const HeroParallax = ({
   return (
     <div
       ref={ref}
-      className="h-[300vh] py-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]">
+      className="h-[300vh] py-0 antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d] mb-30">
       <Header />
       <motion.div
         style={{
@@ -59,16 +59,48 @@ export const HeroParallax = ({
 
 export const Header = () => {
   return (
-    <div
-      className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0">
-      <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
-        Crafting Exceptional <br /> Digital Experiences
-      </h1>
-      <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
-        I design and build fast, elegant, and scalable web products that solve
-        real-world problems. Whether you're launching a startup or refining an
-        existing product — I bring your ideas to life with precision and care.
-      </p>
+    <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0">
+      <div className="min-h-max bg-gray-300 flex justify-center p-8 rounded-lg shadow-lg dark:bg-neutral-800">
+        <ColourfulText
+          text="Hello, I'm Wajid Ali"
+          className="text-7xl font-bold tracking-tight text-center block"
+        />
+      </div>
+
+      {/* Row with gradient + flip text + gradient */}
+      <div className="flex flex-wrap justify-center items-center gap-2 mt-10 text-center">
+        <h1 className="text-2xl md:text-7xl font-bold text-black">
+          Crafting Exceptional
+        </h1>
+
+        <ContainerTextFlip
+          className="mx-2"
+          textClassName="bg-gradient-to-r from-fuchsia-500 via-red-500 to-yellow-500 bg-clip-text text-black"
+          words={[
+            "SaaS",
+            "CRM",
+            "ERP",
+            "E-commerce",
+            "Messaging",
+            "Mobile Apps",
+            "Frontend",
+            "Backend",
+            "Full Stack",
+          ]}
+        />
+
+        <h1 className="text-2xl md:text-7xl font-bold text-black">
+          Digital Experiences
+        </h1>
+      </div>
+
+      <div className="flex justify-center">
+        <p className="text-center text-base md:text-xl mt-8 dark:text-neutral-200">
+          I design and build fast, elegant, and scalable web products that solve
+          real-world problems. Whether you're launching a startup or refining an
+          existing product — I bring your ideas to life with precision and care.
+        </p>
+      </div>
     </div>
   );
 };
@@ -79,13 +111,13 @@ export const ProductCard = ({ product, translate }) => {
       style={{ x: translate }}
       whileHover={{ y: -15 }}
       key={product.title}
-      className="group/product h-64 w-[18rem] relative shrink-0"
+      className="group/product h-48 w-56 relative shrink-0"
     >
       <a href={product.link} className="block group-hover/product:shadow-2xl">
         <img
           src={product.thumbnail}
-          width="300"
-          height="300"
+          width="224"
+          height="192"
           alt={product.title}
           className="object-cover object-left-top absolute h-full w-full inset-0"
         />
