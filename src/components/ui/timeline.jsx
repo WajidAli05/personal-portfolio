@@ -1,7 +1,6 @@
 "use client";
 import { useScroll, useTransform, motion } from "motion/react";
 import React, { useEffect, useRef, useState } from "react";
-import { LampDemo } from "./lamp";
 
 export const Timeline = ({ data }) => {
   const ref = useRef(null);
@@ -28,8 +27,6 @@ export const Timeline = ({ data }) => {
       className="w-full bg-white dark:bg-neutral-950 font-sans md:px-10"
       ref={containerRef}
     >
-      {/* Lamp section replacing the original heading */}
-      <LampDemo text="Services I Offer" />
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
         {data.map((item, index) => (

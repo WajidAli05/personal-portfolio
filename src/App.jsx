@@ -14,6 +14,10 @@ import {
 import { HeroParallax } from "./components/ui/hero-parallax";
 import { MacbookScroll } from "./components/ui/macbook-scroll";
 import { Timeline } from "./components/ui/timeline";
+import { LampDemo } from "./components/ui/lamp";
+import { BackgroundGradient } from "./components/ui/background-gradient";
+import { Button } from "./components/ui/moving-border";
+import logo from './assets/logo.jpg'
 
 // Sample navigation items
 const navItems = [
@@ -159,6 +163,30 @@ const serviceData = [
   },
 ];
 
+const cardsData = [
+  {
+    image: logo,
+    title: "JFH Constuction & Maintenance Company",
+    description: "I developed the JFH Building & Maintenance website for an Australian client in the construction and maintenance industry. The project focused on delivering a clean, responsive, and high-performing business site to showcase services, past projects, and contact options. I was responsible for the full development lifecycle—from layout design and mobile responsiveness to SEO optimization and contact form integration—ensuring the client could effectively connect with their audience and build credibility online.",
+    github: "https://github.com/WajidAli05/Construction-and-maintenance-services-company-website",
+    live: "https://jfhbuilding.com/",
+  },
+  {
+    image: logo,
+    title: "Blu Rays Technology LLC | American ecommerce",
+    description: "I developed a responsive eCommerce platform using the MERN stack for a client engaged in both personal product sales and drop shipping. The application features role-based authentication, Google Sign-In, and JWT-secured API communication. It includes dynamic product search with debounce synchronization, a user-friendly admin dashboard, and seamless checkout flow. The frontend is crafted with ShadCN, offering a clean and modern UI. For payments, I integrated Payoneer to support international transactions securely.",
+    github: "https://github.com/WajidAli05/blue-rays-website.git",
+    live: "",
+  },
+  {
+    image: logo,
+    title: "Blu Rays Technologies Admin Dashboard",
+    description: "Blue Rays Tech Admin Dashboard is a React/MERN admin panel built for managing an e-commerce platform. It features a clean and responsive UI styled with DaisyUI and Tailwind CSS, offering dashboards, charts, and tables for product, order, and user management. I implemented Redux Toolkit for state management, role-based authentication with JWT, and dynamic theming (light/dark modes). Additionally, I integrated Chart.js for data visualization and optimized the UI for performance and usability—ensuring seamless navigation and efficient admin workflows.",
+    github: "https://github.com/WajidAli05/blue-rays-tech",
+    live: "",
+  },
+];
+
 function App() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
@@ -215,7 +243,61 @@ return (
     </div>
 
     {/* Timeline Section */}
+    <LampDemo text="Services I Offer" />
     <Timeline data={serviceData} />
+
+    {/* Projects Section */}
+    <LampDemo text="Check out my latest work" />
+    <div className="min-h-screen text-white flex flex-row flex-wrap items-center justify-center gap-10 py-20 px-4">
+      {cardsData.map((card, index) => (
+        <BackgroundGradient
+          key={index}
+          className="p-6 rounded-3xl w-full max-w-sm text-center"
+          animate
+        >
+          {/* <img
+            src={card.image}
+            alt={card.title}
+            className="w-full h-auto mx-auto rounded object-cover mb-4"
+          /> */}
+          <h1 className="text-2xl font-bold mb-2 text-white">{card.title}</h1>
+          <p className="text-sm mb-6">{card.description}</p>
+          <div className="flex gap-4 justify-center">
+            {/* GitHub Button */}
+            <Button
+              borderRadius="999px"
+              duration={3000}
+              containerClassName="w-32 h-12"
+              className="rounded-full"
+              borderClassName="bg-[radial-gradient(#0ea5e9_40%,transparent_60%)]"
+              as="a"
+              href={card.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </Button>
+
+            {/* Live Site Button */}
+            {card.live && (
+              <Button
+                borderRadius="999px"
+                duration={3000}
+                containerClassName="w-32 h-12"
+                className="rounded-full"
+                borderClassName="bg-[radial-gradient(#7b61ff_40%,transparent_60%)]"
+                as="a"
+                href={card.live}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Live Site
+              </Button>
+            )}
+          </div>
+        </BackgroundGradient>
+      ))}
+    </div>
   </div>
 );
 
