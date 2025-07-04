@@ -1,13 +1,15 @@
 import { cn } from "@/lib/utils";
 import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
-import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "motion/react";
 import { useRef, useState } from "react";
 
-export const FloatingDock = ({
-  items,
-  desktopClassName,
-  mobileClassName
-}) => {
+export const FloatingDock = ({ items, desktopClassName, mobileClassName }) => {
   return (
     <>
       <FloatingDockDesktop items={items} className={desktopClassName} />
@@ -16,10 +18,7 @@ export const FloatingDock = ({
   );
 };
 
-const FloatingDockMobile = ({
-  items,
-  className
-}) => {
+const FloatingDockMobile = ({ items, className }) => {
   const [open, setOpen] = useState(false);
   return (
     <div className={cn("relative block md:hidden", className)}>
@@ -37,15 +36,18 @@ const FloatingDockMobile = ({
                 exit={{
                   opacity: 0,
                   y: 10,
-                  transition: { delay: idx * 0.05 },
+                  transition: {
+                    delay: idx * 0.05,
+                  },
                 }}
                 transition={{ delay: (items.length - 1 - idx) * 0.05 }}
               >
                 <a
                   href={item.href}
                   key={item.title}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(item.href.startsWith("http")
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-900"
                 >
                   <div className="h-4 w-4">{item.icon}</div>
@@ -65,10 +67,7 @@ const FloatingDockMobile = ({
   );
 };
 
-const FloatingDockDesktop = ({
-  items,
-  className
-}) => {
+const FloatingDockDesktop = ({ items, className }) => {
   let mouseX = useMotionValue(Infinity);
   return (
     <motion.div
@@ -86,33 +85,41 @@ const FloatingDockDesktop = ({
   );
 };
 
-function IconContainer({
-  mouseX,
-  title,
-  icon,
-  href
-}) {
-  let ref = useRef(null);
+function IconContainer({ mouseX, title, icon, href }) {
+  const ref = useRef(null);
 
-  let distance = useTransform(mouseX, (val) => {
-    let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+  const distance = useTransform(mouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
     return val - bounds.x - bounds.width / 2;
   });
 
-  let widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-  let heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-  let widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
-  let heightTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
+  const width = useSpring(
+    useTransform(distance, [-150, 0, 150], [40, 80, 40]),
+    { mass: 0.1, stiffness: 150, damping: 12 }
+  );
+  const height = useSpring(
+    useTransform(distance, [-150, 0, 150], [40, 80, 40]),
+    { mass: 0.1, stiffness: 150, damping: 12 }
+  );
 
-  let width = useSpring(widthTransform, { mass: 0.1, stiffness: 150, damping: 12 });
-  let height = useSpring(heightTransform, { mass: 0.1, stiffness: 150, damping: 12 });
-  let widthIcon = useSpring(widthTransformIcon, { mass: 0.1, stiffness: 150, damping: 12 });
-  let heightIcon = useSpring(heightTransformIcon, { mass: 0.1, stiffness: 150, damping: 12 });
+  const widthIcon = useSpring(
+    useTransform(distance, [-150, 0, 150], [20, 40, 20]),
+    { mass: 0.1, stiffness: 150, damping: 12 }
+  );
+  const heightIcon = useSpring(
+    useTransform(distance, [-150, 0, 150], [20, 40, 20]),
+    { mass: 0.1, stiffness: 150, damping: 12 }
+  );
 
   const [hovered, setHovered] = useState(false);
 
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer">
+    <a
+      href={href}
+      {...(href.startsWith("http")
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : {})}
+    >
       <motion.div
         ref={ref}
         style={{ width, height }}
