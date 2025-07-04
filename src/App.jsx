@@ -1,5 +1,5 @@
 import "./index.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { 
   Navbar, 
   NavBody, 
@@ -17,6 +17,8 @@ import { Timeline } from "./components/ui/timeline";
 import { LampDemo } from "./components/ui/lamp";
 import { BackgroundGradient } from "./components/ui/background-gradient";
 import { Button } from "./components/ui/moving-border";
+import { FloatingDock } from "./components/ui/floating-dock";
+import { IconBrandGithub, IconBrandLinkedin, IconHome2, IconUser, IconSettings } from "@tabler/icons-react";
 import logo from './assets/logo.jpg'
 
 // Sample navigation items
@@ -187,8 +189,30 @@ const cardsData = [
   },
 ];
 
+const dockItems = [
+  {
+    title: "Home",
+    href: "#",
+    icon: <IconHome2 className="w-full h-full" />,
+    onClick: () => {
+      homeRef.current?.scrollIntoView({ behavior: "smooth" });
+    },
+  },
+  {
+    title: "Github",
+    href: "https://github.com/WajidAli05",
+    icon: <IconBrandGithub className="w-full h-full" />,
+  },
+  {
+    title: "LinkedIn",
+    href: "https://www.linkedin.com/in/wajid-ali-0746b2186",
+    icon: <IconBrandLinkedin className="w-full h-full" />,
+  },
+];
+
 function App() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const homeRef = useRef(null);
 
   const handleMobileNavToggle = () => {
     setIsMobileNavOpen(!isMobileNavOpen);
@@ -199,11 +223,11 @@ function App() {
   };
 
 return (
-  <div className="relative w-full">
+  <div className="relative w-full scroll-smooth">
     <Navbar className="top-2">
       {/* Desktop Navigation */}
       <NavBody>
-        <div className="flex w-full flex-row items-center justify-between">
+        <div ref={homeRef} className="flex w-full flex-row items-center justify-between">
           <NavbarLogo />
           <NavItems items={navItems} onItemClick={() => {}} />
         </div>
@@ -238,7 +262,7 @@ return (
     <HeroParallax products={products} />
 
     {/* Macbook Scroll Section */}
-    <div className="mb-0"> 
+    <div className="mb-0">
       <MacbookScroll />
     </div>
 
@@ -255,11 +279,6 @@ return (
           className="p-6 rounded-3xl w-full max-w-sm text-center"
           animate
         >
-          {/* <img
-            src={card.image}
-            alt={card.title}
-            className="w-full h-auto mx-auto rounded object-cover mb-4"
-          /> */}
           <h1 className="text-2xl font-bold mb-2 text-white">{card.title}</h1>
           <p className="text-sm mb-6">{card.description}</p>
           <div className="flex gap-4 justify-center">
@@ -298,9 +317,17 @@ return (
         </BackgroundGradient>
       ))}
     </div>
+
+    {/* Floating Dock */}
+    <div className="fixed bottom-4 left-0 right-0 flex justify-center z-50">
+      <FloatingDock
+        items={dockItems}
+        desktopClassName="shadow-lg"
+        mobileClassName="shadow-lg"
+      />
+    </div>
   </div>
 );
-
 }
 
 export default App;
