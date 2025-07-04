@@ -19,6 +19,7 @@ import { BackgroundGradient } from "./components/ui/background-gradient";
 import { Button } from "./components/ui/moving-border";
 import { FloatingDock } from "./components/ui/floating-dock";
 import { IconBrandGithub, IconBrandLinkedin, IconHome2, IconBrandUpwork  } from "@tabler/icons-react";
+import { EvervaultCard } from "./components/ui/evervault-card";
 import logo from './assets/logo.jpg'
 
 // Sample navigation items
@@ -224,6 +225,54 @@ const dockItems = [
   },
 ];
 
+const skills = [
+  // Frontend
+  "HTML5",
+  "CSS3",
+  "JavaScript (ES6+)",
+  "TypeScript",
+  "React",
+  "Next.js",
+  "Redux",
+  "TailwindCSS",
+  "Framer Motion",
+  "Bootstrap",
+
+  // Backend
+  "Node.js",
+  "Express",
+  "REST API",
+  "JWT",
+  "OAuth",
+
+  // Databases
+  "MongoDB",
+  "Mongoose",
+  "MySQL",
+  "PostgreSQL",
+  "Redis",
+
+  // DevOps & Deployment
+  "Git",
+  "Github",
+  "Docker",
+  "CI/CD",
+
+  // Tools & Utilities
+  "Axios",
+  "Cloudinary",
+  "Figma",
+  "Postman",
+
+  // Soft Skills & Others
+  "Agile / Scrum",
+  "Problem Solving",
+  "Communication",
+  "Documentation",
+  "Version Control",
+  "Responsive Design",
+];
+
 function App() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const homeRef = useRef(null);
@@ -374,8 +423,24 @@ return (
         </BackgroundGradient>
       ))}
     </div>
+    {/* Skills Section */}
+    <LampDemo text="Skills" />
+<div className="bg-transparent flex flex-wrap gap-4 justify-center items-center p-30">
+  {skills.map((skill, index) => (
+    <div
+      key={index}
+      className="w-max h-auto border border-slate-300 rounded-full"
+    >
+      <EvervaultCard
+        text={skill}
+        className="w-max h-auto"
+      />
+    </div>
+  ))}
+</div>
   </div>
 );
 }
+
 
 export default App;
