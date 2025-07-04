@@ -425,19 +425,19 @@ return (
     </div>
     {/* Skills Section */}
     <LampDemo text="Skills" />
-<div className="bg-transparent flex flex-wrap gap-4 justify-center items-center p-30">
-  {skills.map((skill, index) => (
-    <div
-      key={index}
-      className="w-max h-auto border border-slate-300 rounded-full"
-    >
-      <EvervaultCard
-        text={skill}
-        className="w-max h-auto"
-      />
+    <div className="bg-transparent flex flex-wrap gap-4 justify-center items-center px-4 sm:px-8 md:px-12 lg:px-30 py-10">
+      {skills.map((skill, index) => (
+        <div
+          key={index}
+          className="w-max h-auto border-[1px] border-slate-300 rounded-full"
+        >
+          <EvervaultCard
+            text={skill}
+            className="w-max h-auto"
+          />
+        </div>
+      ))}
     </div>
-  ))}
-</div>
   </div>
 );
 }
