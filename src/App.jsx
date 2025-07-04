@@ -18,7 +18,7 @@ import { LampDemo } from "./components/ui/lamp";
 import { BackgroundGradient } from "./components/ui/background-gradient";
 import { Button } from "./components/ui/moving-border";
 import { FloatingDock } from "./components/ui/floating-dock";
-import { IconBrandGithub, IconBrandLinkedin, IconHome2, IconUser, IconSettings } from "@tabler/icons-react";
+import { IconBrandGithub, IconBrandLinkedin, IconHome2, IconBrandUpwork  } from "@tabler/icons-react";
 import logo from './assets/logo.jpg'
 
 // Sample navigation items
@@ -165,7 +165,7 @@ const serviceData = [
   },
 ];
 
-const cardsData = [
+const projectsData = [
   {
     image: logo,
     title: "JFH Constuction & Maintenance Company",
@@ -189,6 +189,15 @@ const cardsData = [
   },
 ];
 
+const publicationData = [
+  {
+    image: logo,
+    title: "CodeComClassify: Automating Code Comments Classification using BERT-Based Language Models",
+    description: "CodeComClassify is a research project and tool developed to automatically classify source code comments using fine-tuned BERT-based language models. As part of the NLBSE 2024 Tool Competition at ICSE 2025, the system was evaluated on a large, multilingual dataset spanning Java, Python, and Pharo.The model categorizes comments into functional groups such as description, todo, warning, and more, aiming to support automated documentation, improve code readability, and enhance developer productivity. Our experiments demonstrated that DistilBERT, a lightweight transformer model, outperformed the official baselines in both classification accuracy and runtime efficiency, making it suitable for real-world integration into developer tools and IDEs.",
+    live: "https://ieeexplore.ieee.org/abstract/document/11029439",
+  }
+];
+
 const dockItems = [
   {
     title: "Home",
@@ -207,6 +216,11 @@ const dockItems = [
     title: "LinkedIn",
     href: "https://www.linkedin.com/in/wajid-ali-0746b2186",
     icon: <IconBrandLinkedin className="w-full h-full" />,
+  },
+  {
+    title: "Upwork",
+    href: "https://www.upwork.com/freelancers/~014724411e6338e0e8",
+    icon: <IconBrandUpwork className="w-full h-full" />,
   },
 ];
 
@@ -273,7 +287,7 @@ return (
     {/* Projects Section */}
     <LampDemo text="Check out my latest work" />
     <div className="min-h-screen text-white flex flex-row flex-wrap items-center justify-center gap-10 py-20 px-4">
-      {cardsData.map((card, index) => (
+      {projectsData.map((card, index) => (
         <BackgroundGradient
           key={index}
           className="p-6 rounded-3xl w-full max-w-sm text-center"
@@ -283,19 +297,21 @@ return (
           <p className="text-sm mb-6">{card.description}</p>
           <div className="flex gap-4 justify-center">
             {/* GitHub Button */}
-            <Button
-              borderRadius="999px"
-              duration={3000}
-              containerClassName="w-32 h-12"
-              className="rounded-full"
-              borderClassName="bg-[radial-gradient(#0ea5e9_40%,transparent_60%)]"
-              as="a"
-              href={card.github}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </Button>
+         {card.github && 
+              <Button
+                  borderRadius="999px"
+                  duration={3000}
+                  containerClassName="w-32 h-12"
+                  className="rounded-full"
+                  borderClassName="bg-[radial-gradient(#0ea5e9_40%,transparent_60%)]"
+                  as="a"
+                  href={card.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
+              </Button>
+            }
 
             {/* Live Site Button */}
             {card.live && (
@@ -325,6 +341,38 @@ return (
         desktopClassName="shadow-lg"
         mobileClassName="shadow-lg"
       />
+    </div>
+
+    <LampDemo text="Check out my publications" />
+      <div className="min-h-screen text-white flex flex-row flex-wrap items-center justify-center gap-10 py-20 px-4">
+      {publicationData.map((card, index) => (
+        <BackgroundGradient
+          key={index}
+          className="p-6 rounded-3xl w-full max-w-sm text-center"
+          animate
+        >
+          <h1 className="text-2xl font-bold mb-2 text-white">{card.title}</h1>
+          <p className="text-sm mb-6">{card.description}</p>
+          <div className="flex gap-4 justify-center">
+            {/* Live Site Button */}
+            {card.live && (
+              <Button
+                borderRadius="999px"
+                duration={3000}
+                containerClassName="w-32 h-12"
+                className="rounded-full"
+                borderClassName="bg-[radial-gradient(#7b61ff_40%,transparent_60%)]"
+                as="a"
+                href={card.live}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Check Publication
+              </Button>
+            )}
+          </div>
+        </BackgroundGradient>
+      ))}
     </div>
   </div>
 );
