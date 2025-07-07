@@ -9,7 +9,6 @@ import {
   MobileNavMenu, 
   MobileNavToggle, 
   NavbarLogo, 
-  NavbarButton 
 } from "./components/ui/resizable-navbar";
 import { HeroParallax } from "./components/ui/hero-parallax";
 import { MacbookScroll } from "./components/ui/macbook-scroll";
@@ -20,9 +19,9 @@ import { Button } from "./components/ui/moving-border";
 import { FloatingDock } from "./components/ui/floating-dock";
 import { IconBrandGithub, IconBrandLinkedin, IconHome2, IconBrandUpwork  } from "@tabler/icons-react";
 import { EvervaultCard } from "./components/ui/evervault-card";
-import logo from './assets/logo.jpg'
 
 //images imports
+import logo from './assets/logo.jpg'
 import frontendImage1 from "./assets/frontend1.jpg"
 import frontendImage2 from "./assets/frontend2.jpg"
 import backendImage1 from "./assets/backend1.jpg"
@@ -435,7 +434,7 @@ return (
     </div>
     {/* Skills Section */}
     <LampDemo text="Skills" />
-    <div className="bg-transparent flex flex-wrap gap-4 justify-center items-center px-4 sm:px-8 md:px-12 lg:px-30 py-10">
+    <div className="bg-transparent flex flex-wrap gap-4 justify-center items-center px-4 sm:px-8 md:px-12 lg:px-30 py-25">
       {skills.map((skill, index) => (
         <div
           key={index}
