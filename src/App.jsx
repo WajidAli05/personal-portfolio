@@ -21,7 +21,7 @@ import { IconBrandGithub, IconBrandLinkedin, IconHome2, IconBrandUpwork  } from 
 import { EvervaultCard } from "./components/ui/evervault-card";
 
 //images imports
-import logo from './assets/logo.jpg'
+import logo from './assets/logo.png'
 import frontendImage1 from "./assets/frontend1.jpg"
 import frontendImage2 from "./assets/frontend2.jpg"
 import backendImage1 from "./assets/backend1.jpg"
