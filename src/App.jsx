@@ -34,10 +34,10 @@ import mobileImage2 from "./assets/mobile2.png"
 // Sample navigation items
 const navItems = [
   { name: "Home", link: "#home" },
-  { name: "About", link: "#about" },
   { name: "Services", link: "#services" },
   { name: "Portfolio", link: "#portfolio" },
-  { name: "Contact", link: "#contact" },
+  { name: "Publication", link: "#publication" },
+  { name: "Skills", link: "#skills" },
 ];
 
 // Sample products for HeroParallax
@@ -294,7 +294,7 @@ function App() {
     setIsMobileNavOpen(false);
   };
 
-return (
+  return (
   <div className="relative w-full scroll-smooth">
     <Navbar className="top-2">
       {/* Desktop Navigation */}
@@ -330,20 +330,26 @@ return (
       </MobileNav>
     </Navbar>
 
-    {/* Hero Parallax Section */}
-    <HeroParallax products={products} />
+    {/* Home Section */}
+    <div id="home">
+      <HeroParallax products={products} />
+    </div>
 
     {/* Macbook Scroll Section */}
     <div className="mb-0">
       <MacbookScroll />
     </div>
 
-    {/* Timeline Section */}
-    <LampDemo text="Services I Offer" />
+    {/* Services Section */}
+    <div id="services" className="scroll-mt-20">
+      <LampDemo text="Services I Offer" />
+    </div>
     <Timeline data={serviceData} />
 
-    {/* Projects Section */}
-    <LampDemo text="Check out my latest work" />
+    {/* Portfolio Section */}
+    <div id="portfolio" className="scroll-mt-20">
+      <LampDemo text="Check out my latest work" />
+    </div>
     <div className="min-h-screen text-white flex flex-row flex-wrap items-center justify-center gap-10 py-20 px-4">
       {projectsData.map((card, index) => (
         <BackgroundGradient
@@ -354,24 +360,21 @@ return (
           <h1 className="text-2xl font-bold mb-2 text-white">{card.title}</h1>
           <p className="text-sm mb-6">{card.description}</p>
           <div className="flex gap-4 justify-center">
-            {/* GitHub Button */}
-         {card.github && 
+            {card.github && (
               <Button
-                  borderRadius="999px"
-                  duration={3000}
-                  containerClassName="w-32 h-12"
-                  className="rounded-full"
-                  borderClassName="bg-[radial-gradient(#0ea5e9_40%,transparent_60%)]"
-                  as="a"
-                  href={card.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  GitHub
+                borderRadius="999px"
+                duration={3000}
+                containerClassName="w-32 h-12"
+                className="rounded-full"
+                borderClassName="bg-[radial-gradient(#0ea5e9_40%,transparent_60%)]"
+                as="a"
+                href={card.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
               </Button>
-            }
-
-            {/* Live Site Button */}
+            )}
             {card.live && (
               <Button
                 borderRadius="999px"
@@ -401,8 +404,11 @@ return (
       />
     </div>
 
-    <LampDemo text="Check out my publications" />
-      <div className="min-h-screen text-white flex flex-row flex-wrap items-center justify-center gap-10 py-20 px-4">
+    {/* Publications Section */}
+    <div id="publication" className="scroll-mt-20">
+      <LampDemo text="Check out my publications" />
+    </div>
+    <div className="min-h-screen text-white flex flex-row flex-wrap items-center justify-center gap-10 py-20 px-4">
       {publicationData.map((card, index) => (
         <BackgroundGradient
           key={index}
@@ -412,7 +418,6 @@ return (
           <h1 className="text-2xl font-bold mb-2 text-white">{card.title}</h1>
           <p className="text-sm mb-6">{card.description}</p>
           <div className="flex gap-4 justify-center">
-            {/* Live Site Button */}
             {card.live && (
               <Button
                 borderRadius="999px"
@@ -432,23 +437,179 @@ return (
         </BackgroundGradient>
       ))}
     </div>
+
     {/* Skills Section */}
-    <LampDemo text="Skills" />
+    <div id="skills" className="scroll-mt-20">
+      <LampDemo text="Skills" />
+    </div>
     <div className="bg-transparent flex flex-wrap gap-4 justify-center items-center px-4 sm:px-8 md:px-12 lg:px-30 py-25">
       {skills.map((skill, index) => (
         <div
           key={index}
           className="w-max h-auto border-[1px] border-slate-300 rounded-full"
         >
-          <EvervaultCard
-            text={skill}
-            className="w-max h-auto"
-          />
+          <EvervaultCard text={skill} className="w-max h-auto" />
         </div>
       ))}
     </div>
   </div>
 );
+
+// return (
+//   <div className="relative w-full scroll-smooth">
+//     <Navbar className="top-2">
+//       {/* Desktop Navigation */}
+//       <NavBody>
+//         <div ref={homeRef} className="flex w-full flex-row items-center justify-between">
+//           <NavbarLogo />
+//           <NavItems items={navItems} onItemClick={() => {}} />
+//         </div>
+//       </NavBody>
+
+//       {/* Mobile Navigation */}
+//       <MobileNav>
+//         <MobileNavHeader>
+//           <NavbarLogo />
+//           <MobileNavToggle
+//             isOpen={isMobileNavOpen}
+//             onClick={handleMobileNavToggle}
+//           />
+//         </MobileNavHeader>
+
+//         <MobileNavMenu isOpen={isMobileNavOpen} onClose={handleMobileNavClose}>
+//           {navItems.map((item, idx) => (
+//             <a
+//               key={idx}
+//               href={item.link}
+//               onClick={handleMobileNavClose}
+//               className="flex w-full items-center justify-start rounded-md px-2 py-2 text-neutral-700 hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-800"
+//             >
+//               {item.name}
+//             </a>
+//           ))}
+//         </MobileNavMenu>
+//       </MobileNav>
+//     </Navbar>
+
+//     {/* Hero Parallax Section */}
+//     <HeroParallax products={products} />
+
+//     {/* Macbook Scroll Section */}
+//     <div className="mb-0">
+//       <MacbookScroll />
+//     </div>
+
+//     {/* Timeline Section */}
+//     <LampDemo text="Services I Offer" />
+//     <Timeline data={serviceData} />
+
+//     {/* Projects Section */}
+//     <LampDemo text="Check out my latest work" />
+//     <div className="min-h-screen text-white flex flex-row flex-wrap items-center justify-center gap-10 py-20 px-4">
+//       {projectsData.map((card, index) => (
+//         <BackgroundGradient
+//           key={index}
+//           className="p-6 rounded-3xl w-full max-w-sm text-center"
+//           animate
+//         >
+//           <h1 className="text-2xl font-bold mb-2 text-white">{card.title}</h1>
+//           <p className="text-sm mb-6">{card.description}</p>
+//           <div className="flex gap-4 justify-center">
+//             {/* GitHub Button */}
+//          {card.github && 
+//               <Button
+//                   borderRadius="999px"
+//                   duration={3000}
+//                   containerClassName="w-32 h-12"
+//                   className="rounded-full"
+//                   borderClassName="bg-[radial-gradient(#0ea5e9_40%,transparent_60%)]"
+//                   as="a"
+//                   href={card.github}
+//                   target="_blank"
+//                   rel="noopener noreferrer"
+//                 >
+//                   GitHub
+//               </Button>
+//             }
+
+//             {/* Live Site Button */}
+//             {card.live && (
+//               <Button
+//                 borderRadius="999px"
+//                 duration={3000}
+//                 containerClassName="w-32 h-12"
+//                 className="rounded-full"
+//                 borderClassName="bg-[radial-gradient(#7b61ff_40%,transparent_60%)]"
+//                 as="a"
+//                 href={card.live}
+//                 target="_blank"
+//                 rel="noopener noreferrer"
+//               >
+//                 Live Site
+//               </Button>
+//             )}
+//           </div>
+//         </BackgroundGradient>
+//       ))}
+//     </div>
+
+//     {/* Floating Dock */}
+//     <div className="fixed bottom-4 left-0 right-0 flex justify-center z-50">
+//       <FloatingDock
+//         items={dockItems}
+//         desktopClassName="shadow-lg"
+//         mobileClassName="shadow-lg"
+//       />
+//     </div>
+
+//     <LampDemo text="Check out my publications" />
+//       <div className="min-h-screen text-white flex flex-row flex-wrap items-center justify-center gap-10 py-20 px-4">
+//       {publicationData.map((card, index) => (
+//         <BackgroundGradient
+//           key={index}
+//           className="p-6 rounded-3xl w-full max-w-sm text-center"
+//           animate
+//         >
+//           <h1 className="text-2xl font-bold mb-2 text-white">{card.title}</h1>
+//           <p className="text-sm mb-6">{card.description}</p>
+//           <div className="flex gap-4 justify-center">
+//             {/* Live Site Button */}
+//             {card.live && (
+//               <Button
+//                 borderRadius="999px"
+//                 duration={3000}
+//                 containerClassName="w-32 h-12"
+//                 className="rounded-full"
+//                 borderClassName="bg-[radial-gradient(#7b61ff_40%,transparent_60%)]"
+//                 as="a"
+//                 href={card.live}
+//                 target="_blank"
+//                 rel="noopener noreferrer"
+//               >
+//                 Check Publication
+//               </Button>
+//             )}
+//           </div>
+//         </BackgroundGradient>
+//       ))}
+//     </div>
+//     {/* Skills Section */}
+//     <LampDemo text="Skills" />
+//     <div className="bg-transparent flex flex-wrap gap-4 justify-center items-center px-4 sm:px-8 md:px-12 lg:px-30 py-25">
+//       {skills.map((skill, index) => (
+//         <div
+//           key={index}
+//           className="w-max h-auto border-[1px] border-slate-300 rounded-full"
+//         >
+//           <EvervaultCard
+//             text={skill}
+//             className="w-max h-auto"
+//           />
+//         </div>
+//       ))}
+//     </div>
+//   </div>
+// );
 }
 
 
