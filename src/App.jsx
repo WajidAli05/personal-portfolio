@@ -22,6 +22,16 @@ import { IconBrandGithub, IconBrandLinkedin, IconHome2, IconBrandUpwork  } from 
 import { EvervaultCard } from "./components/ui/evervault-card";
 import logo from './assets/logo.jpg'
 
+//images imports
+import frontendImage1 from "./assets/frontend1.jpg"
+import frontendImage2 from "./assets/frontend2.jpg"
+import backendImage1 from "./assets/backend1.jpg"
+import backendImage2 from "./assets/backend2.jpg"
+import fullstackImage1 from "./assets/fullstack1.png"
+import fullstackImage2 from "./assets/fullstack2.png"
+import mobileImage1 from "./assets/mobile1.png"
+import mobileImage2 from "./assets/mobile2.png"
+
 // Sample navigation items
 const navItems = [
   { name: "Home", link: "#home" },
@@ -123,7 +133,7 @@ const serviceData = [
         I build responsive user interfaces using <strong>React.js</strong>, <strong>HTML5</strong>, <strong>CSS3</strong>, and <strong>JavaScript (ES6+)</strong>. I enhance styling with <strong>Tailwind CSS</strong> or <strong>Material UI</strong>, and incorporate smooth animations using <strong>Framer Motion</strong> or <strong>GSAP</strong>.
       </p>
     ),
-    images: ["./src/assets/frontend1.jpg", "./src/assets/frontend2.jpg"],
+    images: [frontendImage1, frontendImage2],
   },
   {
     title: "Backend & API Development",
@@ -132,7 +142,7 @@ const serviceData = [
         I develop scalable backend services using <strong>Node.js</strong> and <strong>Express.js</strong>. I implement secure authentication with <strong>JWT</strong> or <strong>OAuth</strong>, and ensure data validation with <strong>Zod</strong> or <strong>Yup</strong>.
       </p>
     ),
-    images: ["./src/assets/backend1.jpg", "./src/assets/backend2.jpg"],
+    images: [backendImage1, backendImage2],
   },
   {
     title: "Full Stack Application Development",
@@ -147,7 +157,7 @@ const serviceData = [
                fast, and secure full stack solutions.
       </p>
     ),
-    images: ["./src/assets/fullstack1.png", "./src/assets/fullstack2.png"],
+    images: [fullstackImage1, fullstackImage2],
   },
   {
     title: "Mobile Application Development",
@@ -162,7 +172,7 @@ const serviceData = [
               mobile experiences.
       </p>
     ),
-    images: ["./src/assets/mobile1.png", "./src/assets/mobile2.png"],
+    images: [mobileImage1, mobileImage2],
   },
 ];
 
