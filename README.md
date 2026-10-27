@@ -1,12 +1,30 @@
-# React + Vite
+# Wajid Ali · Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Next.js 16 (static export) · Tailwind CSS 4 · Three.js. The design decisions are in `docs/design-package.md`.
 
-Currently, two official plugins are available:
+## Run it
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # writes the finished site to /out
+npm start        # serves /out locally
+```
 
-## Expanding the ESLint configuration
+## Where things live
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| What | File |
+|---|---|
+| Every word on the page | `src/lib/content.ts` |
+| Colors, type, layout, motion | `src/app/globals.css` |
+| Hero 3D stack (scroll-driven) | `src/components/hero/stackScene.ts`, `Hero.tsx` |
+| Case-study video scrubbing | `src/components/work/ScrubFrame.tsx` |
+| Comment quiz (research section) | `src/components/sections/Quiz.tsx` |
+| Images, videos, share image | `public/img`, `public/media`, `public/og.png` |
+| Raw recordings and screenshots (never shipped) | `media-src/` (git-ignored) |
+
+## Deploy
+
+Set `NEXT_PUBLIC_SITE_URL` to the live address, run `npm run build`, and upload the contents of `/out` to any static host.
+
+The old Vite portfolio is preserved on the `vite-portfolio` branch.
