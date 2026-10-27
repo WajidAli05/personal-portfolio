@@ -10,13 +10,13 @@ const groupIcon: Record<string, string> = {
 };
 
 export function Skills() {
-  const logos = skills.groups.flatMap((g) => g.items).filter((n) => tech[n] && !["REST APIs", "BERT models", "NLP"].includes(n));
+  const logos = skills.groups.flatMap((g) => g.items).filter((n) => tech[n] && !["REST APIs", "BERT models", "NLP", "Zustand"].includes(n));
   return (
     <section className="section" id="skills" aria-labelledby="skills-title">
       <div className="container">
         <div className="sec-head" data-reveal>
           <span className="eyebrow" style={{ ["--i" as string]: 0 }}>03 · skills</span>
-          <h2 id="skills-title" className="display" style={{ ["--i" as string]: 1 }}>{skills.title}</h2>
+          <h2 id="skills-title" className="display" data-split>{skills.title}</h2>
           <p style={{ ["--i" as string]: 2 }}>{skills.lede}</p>
         </div>
       </div>

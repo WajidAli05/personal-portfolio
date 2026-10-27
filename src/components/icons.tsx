@@ -3,12 +3,12 @@ import {
   LuArrowRight, LuArrowUpRight, LuBookOpen, LuBriefcase, LuChartColumn, LuCreditCard, LuDatabase, LuFileText,
   LuGlobe, LuGraduationCap, LuLanguages, LuLayers, LuLock, LuMail, LuMapPin, LuMessageCircle, LuMonitorSmartphone,
   LuPlay, LuReceipt, LuServer, LuShieldCheck, LuSparkles, LuUsers, LuWorkflow, LuCode, LuBrain, LuWrench, LuPlus,
-  LuCopy, LuCheck, LuPause, LuMenu, LuX, LuBadgeCheck,
+  LuCopy, LuCheck, LuPause, LuMenu, LuX, LuBadgeCheck, LuBoxes, LuMousePointer2,
 } from "react-icons/lu";
 import {
   SiReact, SiNextdotjs, SiTypescript, SiJavascript, SiTailwindcss, SiThreedotjs, SiGreensock, SiRedux, SiHtml5, SiCss,
   SiNodedotjs, SiExpress, SiJsonwebtokens, SiStripe, SiCloudinary, SiMongodb, SiMysql, SiRedis, SiPython, SiHuggingface,
-  SiGit, SiGithub, SiPostman, SiFigma, SiVite, SiVercel, SiNetlify, SiUpwork, SiGooglescholar, SiMongoose,
+  SiGit, SiGithub, SiPostman, SiFigma, SiVite, SiVercel, SiNetlify, SiUpwork, SiGooglescholar, SiMongoose, SiWebgl,
 } from "react-icons/si";
 import { FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 
@@ -18,7 +18,7 @@ export const ui: Record<string, IconType> = {
   layers: LuLayers, lock: LuLock, mail: LuMail, pin: LuMapPin, chat: LuMessageCircle, sites: LuMonitorSmartphone,
   play: LuPlay, pause: LuPause, receipt: LuReceipt, backend: LuServer, shield: LuShieldCheck, sparkles: LuSparkles,
   users: LuUsers, systems: LuWorkflow, code: LuCode, brain: LuBrain, tools: LuWrench, plus: LuPlus, copy: LuCopy,
-  check: LuCheck, menu: LuMenu, x: LuX, badge: LuBadgeCheck,
+  check: LuCheck, menu: LuMenu, x: LuX, badge: LuBadgeCheck, pointer: LuMousePointer2,
 };
 
 export function Icon({ name, className }: { name: string; className?: string }) {
@@ -35,6 +35,8 @@ export const tech: Record<string, { I: IconType; c: string }> = {
   "Tailwind CSS": { I: SiTailwindcss, c: "#38BDF8" },
   "Three.js": { I: SiThreedotjs, c: "#FFFFFF" },
   "GSAP": { I: SiGreensock, c: "#88CE02" },
+  "Zustand": { I: LuBoxes, c: "#E7A75A" },
+  "WebGL": { I: SiWebgl, c: "#FF4F6D" },
   "Redux": { I: SiRedux, c: "#9E7CE0" },
   "HTML": { I: SiHtml5, c: "#E34F26" },
   "CSS": { I: SiCss, c: "#5A8DEE" },

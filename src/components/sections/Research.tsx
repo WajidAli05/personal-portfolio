@@ -8,7 +8,7 @@ export function Research() {
       <div className="container">
         <div className="sec-head" data-reveal>
           <span className="eyebrow" style={{ ["--i" as string]: 0 }}>02 · research</span>
-          <h2 id="research-title" className="display" style={{ ["--i" as string]: 1 }}>Published research</h2>
+          <h2 id="research-title" className="display" data-split>Published research</h2>
           <p style={{ ["--i" as string]: 2 }}>Natural language processing applied to software engineering: teaching models to read the comments developers leave in code.</p>
         </div>
 
@@ -32,7 +32,7 @@ export function Research() {
             <p className="abstract">{research.body}</p>
             <div className="pstats">
               {research.stats.map((s) => (
-                <div key={s.label}><div className="v grad-text">{s.value}</div><div className="l">{s.label}</div></div>
+                <div key={s.label}><div className="v grad-text" data-num={parseInt(s.value)} data-suffix={s.value.replace(/^[0-9]+/, "")}>{s.value}</div><div className="l">{s.label}</div></div>
               ))}
             </div>
             <div className="plinks">

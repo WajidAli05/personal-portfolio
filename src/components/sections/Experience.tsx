@@ -9,7 +9,7 @@ export function Experience() {
       <div className="container">
         <div className="sec-head" data-reveal>
           <span className="eyebrow" style={{ ["--i" as string]: 0 }}>04 · experience</span>
-          <h2 id="exp-title" className="display" style={{ ["--i" as string]: 1 }}>{experience.title}</h2>
+          <h2 id="exp-title" className="display" data-split>{experience.title}</h2>
         </div>
 
         <div className="exp">
@@ -30,9 +30,11 @@ export function Experience() {
             </a>
           </aside>
 
-          <ol className="timeline" data-reveal>
-            {experience.timeline.map((e, i) => (
-              <li className="card tl" key={e.what} style={{ ["--i" as string]: i }}>
+          <div className="timeline">
+            <span className="tl-line" aria-hidden="true"><i /></span>
+            <ol className="tl-list">
+            {experience.timeline.map((e) => (
+              <li className="card tl" key={e.what}>
                 <span className="dot" aria-hidden="true"><Icon name={e.icon} /></span>
                 <div className="when">{e.when}</div>
                 <h4>{e.what}</h4>
@@ -40,7 +42,8 @@ export function Experience() {
                 <p>{e.body}</p>
               </li>
             ))}
-          </ol>
+            </ol>
+          </div>
         </div>
       </div>
     </section>

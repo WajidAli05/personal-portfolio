@@ -1,5 +1,15 @@
 # Design package: Wajid Ali portfolio
 
+## Revision 3 (owner feedback: seasoned-developer polish)
+- Intro: counter and name preloader (skipped on repeat visits in a session and with reduced motion).
+- Hero: split-letter name rise, scrambling "I build ..." line, WebGL particle portrait (about 20k points sampled from the cutout) that assembles after the intro, parts around the cursor and dissolves on scroll; count-up stats.
+- Lenis smooth scrolling synced to GSAP ScrollTrigger; masked line reveals on section titles; media clip-path wipes; websites gallery pins and scrolls sideways on desktop; timeline line draws with scroll.
+- Oversized outlined text bands that speed up and skew with scroll velocity.
+- Contact: WebGL dotted-land globe with arcs from Islamabad to Miami, Melbourne and Doha; drag to spin.
+- Custom cursor with labels over media and magnetic buttons (fine pointers only).
+- Zustand holds shared UI state (intro finished, cursor label) and is listed under skills.
+- Reduced motion: no intro, no smooth scroll, no pinning, static WebGL frames, all content visible.
+
 ## Revision 2 (owner feedback)
 The owner asked for a direct hero with his details and services, then projects, research and skills, with information grouped into clear sections, more visuals and a modern tech background. Changes:
 - Page order: Hero (name, role, services, stats) → Projects (web apps, websites, with filter tabs) → Research (paper + quiz) → Skills (logo marquee + grouped cards) → Experience and education → Contact with FAQ.

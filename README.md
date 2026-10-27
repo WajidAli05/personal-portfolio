@@ -1,6 +1,6 @@
 # Wajid Ali · Portfolio
 
-Next.js 16 (static export) · Tailwind CSS 4 · Paper Shaders (animated background) · react-icons. The design decisions are in `docs/design-package.md`.
+Next.js 16 (static export) · Tailwind CSS 4 · GSAP (ScrollTrigger, SplitText, ScrambleText) · Lenis · Three.js · Paper Shaders · Zustand · react-icons. The design decisions are in `docs/design-package.md`.
 
 ## Run it
 
@@ -20,6 +20,10 @@ npm start        # serves /out locally
 | Animated background (NeuroNoise shader) | `src/components/Background.tsx` |
 | Sections, in page order | `src/components/sections/` (Hero, Projects, Research, Skills, Experience, Contact) |
 | Tech logos and UI icons | `src/components/icons.tsx` |
+| WebGL particle portrait and globe | `src/components/webgl/` |
+| Intro, smooth scroll, cursor, scroll choreography | `src/components/fx/` |
+| Shared UI state (Zustand) | `src/lib/store.ts` |
+| Globe land dots (precomputed) | `public/data/land.bin` |
 | Images, videos, share image | `public/img`, `public/media`, `public/og.png` |
 | Raw recordings and screenshots (never shipped) | `media-src/` (git-ignored) |
 

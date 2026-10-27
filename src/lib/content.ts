@@ -33,11 +33,12 @@ export const hero = {
   cta: "Email me",
   secondary: "See my projects",
   stats: [
-    { value: "8", label: "projects built" },
-    { value: "58k+", label: "lines in one clinic system" },
-    { value: "4", label: "countries served" },
-    { value: "IEEE", label: "published, NLBSE '25" },
+    { value: "8", count: 8, suffix: "", label: "projects built" },
+    { value: "58k+", count: 58, suffix: "k+", label: "lines in one clinic system" },
+    { value: "4", count: 4, suffix: "", label: "countries served" },
+    { value: "IEEE", count: 0, suffix: "", label: "published, NLBSE '25" },
   ],
+  builds: ["business systems", "3D marketing sites", "secure APIs", "NLP research tools"],
   doTitle: "What I do",
   doItems: [
     {
@@ -244,7 +245,7 @@ export const skills = {
   title: "Skills and tools",
   lede: "What I reach for every week, grouped by where it sits in the stack.",
   groups: [
-    { name: "Frontend", items: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "Three.js", "GSAP", "Redux", "HTML", "CSS"] },
+    { name: "Frontend", items: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "Zustand", "Redux", "Three.js", "WebGL", "GSAP", "HTML", "CSS"] },
     { name: "Backend", items: ["Node.js", "Express", "REST APIs", "JWT", "Stripe", "Cloudinary"] },
     { name: "Databases", items: ["MongoDB", "Mongoose", "MySQL", "Redis"] },
     { name: "AI and research", items: ["Python", "Hugging Face", "BERT models", "NLP"] },
@@ -324,6 +325,13 @@ export const faq = {
     { q: "Are you open to full-time roles?", a: "Yes. Email me the role and I'll reply with my CV." },
   ],
 };
+
+export const cities = [
+  { name: "Islamabad", lat: 33.68, lon: 73.05, home: true },
+  { name: "Miami", lat: 25.76, lon: -80.19 },
+  { name: "Melbourne", lat: -37.81, lon: 144.96 },
+  { name: "Doha", lat: 25.29, lon: 51.53 },
+];
 
 export const footer = {
   line: "Wajid Ali, full-stack engineer.",
