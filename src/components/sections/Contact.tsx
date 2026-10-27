@@ -2,19 +2,18 @@ import { cities, contact, contactSection, faq, footer } from "@/lib/content";
 import { Icon, brand } from "@/components/icons";
 import { Globe } from "@/components/webgl/Globe";
 import { CopyEmail } from "./CopyEmail";
+import { SecHead } from "@/components/SecHead";
 
 export function Contact() {
   const B = brand;
   return (
     <section className="section" id="contact" aria-labelledby="contact-title">
       <div className="container">
-        <div className="sec-head" data-reveal>
-          <span className="eyebrow" style={{ ["--i" as string]: 0 }}>05 · contact</span>
-        </div>
+        <SecHead n="05" label="contact" id="contact-title" title={<>Tell me what you&apos;re <span className="grad-text">building.</span></>} lede={contactSection.body} />
         <div className="card cta">
           <div className="cta-copy" data-reveal>
-            <h2 id="contact-title" className="display" style={{ ["--i" as string]: 0 }}>Tell me what you&apos;re <span className="grad-text">building.</span></h2>
-            <p style={{ ["--i" as string]: 1 }}>{contactSection.body}</p>
+            <p className="cta-kicker mono" style={{ ["--i" as string]: 0 }}><i aria-hidden="true" />Islamabad · PKT (UTC+5) · clients in 4 countries</p>
+            <h3 className="display cta-title" style={{ ["--i" as string]: 1 }}>Start a conversation</h3>
             <div className="mail-row" style={{ ["--i" as string]: 2 }}>
               <a className="btn btn-primary mail-big" href={contact.mailto} data-magnetic><Icon name="mail" />{contactSection.primary}</a>
               <CopyEmail email={contact.email} label={contactSection.copy} done={contactSection.copied} />

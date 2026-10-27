@@ -30,16 +30,16 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#060812",
+  themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#05070f" }, { media: "(prefers-color-scheme: light)", color: "#eef1f8" }],
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme="dark" className={`${display.variable} ${body.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: "try{var d=document.documentElement;if(!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('motion');if(sessionStorage.getItem('wa-intro')==='1')d.classList.add('intro-seen')}catch(e){}" }} />
+        <script dangerouslySetInnerHTML={{ __html: "try{var d=document.documentElement,t=localStorage.getItem('wa-theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.dataset.theme=t;if(!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('motion');if(sessionStorage.getItem('wa-intro')==='1')d.classList.add('intro-seen')}catch(e){document.documentElement.dataset.theme='dark'}" }} />
       </head>
       <body>
         <a className="skip" href="#main">Skip to content</a>

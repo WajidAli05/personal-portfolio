@@ -1,16 +1,14 @@
 import { research } from "@/lib/content";
 import { Icon } from "@/components/icons";
 import { Quiz } from "./Quiz";
+import { SecHead } from "@/components/SecHead";
 
 export function Research() {
   return (
     <section className="section" id="research" aria-labelledby="research-title">
       <div className="container">
-        <div className="sec-head" data-reveal>
-          <span className="eyebrow" style={{ ["--i" as string]: 0 }}>02 · research</span>
-          <h2 id="research-title" className="display" data-split>Published research</h2>
-          <p style={{ ["--i" as string]: 2 }}>Natural language processing applied to software engineering: teaching models to read the comments developers leave in code.</p>
-        </div>
+        <SecHead n="02" label="research" id="research-title" title="Published research"
+          lede="Natural language processing applied to software engineering: teaching models to read the comments developers leave in code." />
 
         <article className="card paper" data-reveal>
           <div style={{ ["--i" as string]: 0 }}>

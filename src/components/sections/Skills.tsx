@@ -1,5 +1,6 @@
 import { skills } from "@/lib/content";
 import { Icon, Tech, tech } from "@/components/icons";
+import { SecHead } from "@/components/SecHead";
 
 const groupIcon: Record<string, string> = {
   "Frontend": "sites",
@@ -14,11 +15,7 @@ export function Skills() {
   return (
     <section className="section" id="skills" aria-labelledby="skills-title">
       <div className="container">
-        <div className="sec-head" data-reveal>
-          <span className="eyebrow" style={{ ["--i" as string]: 0 }}>03 · skills</span>
-          <h2 id="skills-title" className="display" data-split>{skills.title}</h2>
-          <p style={{ ["--i" as string]: 2 }}>{skills.lede}</p>
-        </div>
+        <SecHead n="03" label="skills" id="skills-title" title={skills.title} lede={skills.lede} />
       </div>
 
       <div className="marquee" aria-hidden="true">

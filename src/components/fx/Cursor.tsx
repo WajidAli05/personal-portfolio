@@ -22,12 +22,10 @@ export function Cursor() {
     const ry = gsap.quickTo(r, "y", { duration: 0.45, ease: "power3" });
     const dx = gsap.quickTo(d, "x", { duration: 0.08, ease: "none" });
     const dy = gsap.quickTo(d, "y", { duration: 0.08, ease: "none" });
-    let shown = false, hoverEl: Element | null = null;
+    let shown = false, hoverEl: Element | null = null, px = -1, py = -1;
 
-    const move = (e: PointerEvent) => {
-      if (!shown) { gsap.to([r, d], { opacity: 1, duration: 0.3 }); shown = true; }
-      rx(e.clientX); ry(e.clientY); dx(e.clientX); dy(e.clientY);
-      const t = e.target as Element;
+    const probe = (t: Element | null) => {
+      if (!t) return;
       const cur = t.closest?.("[data-cursor]");
       const act = t.closest?.("a, button, summary, [role=tab]");
       const next = cur ?? act;
@@ -39,6 +37,16 @@ export function Cursor() {
         r.classList.toggle("is-label", !!lab);
       }
     };
+    const move = (e: PointerEvent) => {
+      if (!shown) { gsap.to([r, d], { opacity: 1, duration: 0.3 }); shown = true; }
+      px = e.clientX; py = e.clientY;
+      rx(px); ry(py); dx(px); dy(py);
+      probe(e.target as Element);
+    };
+    // content scrolls under a still pointer: re-check what is beneath it
+    let sraf = 0;
+    const onScroll = () => { if (sraf || px < 0) return; sraf = requestAnimationFrame(() => { sraf = 0; probe(document.elementFromPoint(px, py)); }); };
+    window.addEventListener("scroll", onScroll, { passive: true });
     const leave = () => { gsap.to([r, d], { opacity: 0, duration: 0.3 }); shown = false; };
 
     // magnetic buttons
@@ -56,6 +64,7 @@ export function Cursor() {
     document.addEventListener("pointerleave", leave);
     return () => {
       window.removeEventListener("pointermove", move);
+      window.removeEventListener("scroll", onScroll);
       document.removeEventListener("pointerleave", leave);
       offs.forEach((f) => f());
       document.documentElement.classList.remove("has-cursor");

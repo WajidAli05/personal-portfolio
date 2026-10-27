@@ -1,16 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import { experience, hero } from "@/lib/content";
 import { Icon } from "@/components/icons";
+import { SecHead } from "@/components/SecHead";
 
 export function Experience() {
   const t = experience.talk;
   return (
     <section className="section" id="experience" aria-labelledby="exp-title">
       <div className="container">
-        <div className="sec-head" data-reveal>
-          <span className="eyebrow" style={{ ["--i" as string]: 0 }}>04 · experience</span>
-          <h2 id="exp-title" className="display" data-split>{experience.title}</h2>
-        </div>
+        <SecHead n="04" label="experience" id="exp-title" title={experience.title} lede="Where I have worked, what I studied, and where I have spoken." />
 
         <div className="exp">
           <aside className="card me-card" data-reveal>

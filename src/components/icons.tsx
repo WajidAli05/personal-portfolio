@@ -66,7 +66,7 @@ export const tech: Record<string, { I: IconType; c: string }> = {
 export function Tech({ name }: { name: string }) {
   const t = tech[name];
   if (!t) return null;
-  return <t.I style={{ color: t.c }} aria-hidden="true" />;
+  return <t.I style={{ color: t.c }} className={t.c === "#FFFFFF" ? "tech-white" : undefined} aria-hidden="true" />;
 }
 
 export const brand = { github: SiGithub, linkedin: FaLinkedinIn, upwork: SiUpwork, scholar: SiGooglescholar, whatsapp: FaWhatsapp };

@@ -1,5 +1,12 @@
 # Design package: Wajid Ali portfolio
 
+## Revision 4 (owner feedback: futuristic, consistent, themes)
+- Nav: floating glass capsule without the name: animated WA monogram, numbered links with a sliding glow indicator, live Islamabad clock, theme switch, email button; hides on scroll down, scroll progress along its base; full-screen circular-reveal menu on small screens.
+- Dark and light themes from one token set; saved choice, system default, set before first paint; circular View Transition sweep from the toggle. Shader background and particle portrait retint per theme.
+- One section header pattern everywhere ([0n] HUD label with a running blip, split-reveal title, lede). Cards share a gradient hairline edge, glass surface and cursor spotlight.
+- Project media: holographic boot-up (scan line reveal, glitch flicker, HUD corners, grid flash, REC/SITE tags) replacing the clip-path wipe and image zoom; hover tilts the frame in 3D with a moving glare and scanlines.
+- Hero HUD: location readout and live particle count around the portrait.
+
 ## Revision 3 (owner feedback: seasoned-developer polish)
 - Intro: counter and name preloader (skipped on repeat visits in a session and with reduced motion).
 - Hero: split-letter name rise, scrambling "I build ..." line, WebGL particle portrait (about 20k points sampled from the cutout) that assembles after the intro, parts around the cursor and dissolves on scroll; count-up stats.

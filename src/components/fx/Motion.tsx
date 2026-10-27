@@ -42,7 +42,34 @@ export function Motion() {
       });
     };
     if (window.matchMedia("(pointer: fine)").matches) window.addEventListener("pointermove", move, { passive: true });
-    const vis = () => document.body.classList.toggle("paused", document.hidden);
+
+    // holographic tilt + glare on [data-tilt] (delegated, so it survives re-renders)
+    type Tilt = { rx: (v: number) => void; ry: (v: number) => void };
+    const tilts = new WeakMap<HTMLElement, Tilt>();
+    let tiltEl: HTMLElement | null = null;
+    const canTilt = window.matchMedia("(pointer: fine) and (prefers-reduced-motion: no-preference)").matches;
+    const tiltMove = (e: PointerEvent) => {
+      const el = (e.target as HTMLElement).closest?.("[data-tilt]") as HTMLElement | null;
+      if (tiltEl && el !== tiltEl) { const t = tilts.get(tiltEl); t?.rx(0); t?.ry(0); tiltEl.classList.remove("is-tilt"); }
+      tiltEl = el;
+      if (!el) return;
+      let t = tilts.get(el);
+      if (!t) {
+        gsap.set(el, { transformPerspective: 1100, transformOrigin: "50% 50%" });
+        t = { rx: gsap.quickTo(el, "rotationX", { duration: 0.6, ease: "power3" }), ry: gsap.quickTo(el, "rotationY", { duration: 0.6, ease: "power3" }) };
+        tilts.set(el, t);
+      }
+      const r = el.getBoundingClientRect();
+      const nx = (e.clientX - r.left) / r.width, ny = (e.clientY - r.top) / r.height;
+      t.ry((nx - 0.5) * 9);
+      t.rx(-(ny - 0.5) * 7);
+      el.style.setProperty("--gx", `${nx * 100}%`);
+      el.style.setProperty("--gy", `${ny * 100}%`);
+      el.classList.add("is-tilt");
+    };
+    if (canTilt) window.addEventListener("pointermove", tiltMove, { passive: true });
+
+    const vis =() => document.body.classList.toggle("paused", document.hidden);
     document.addEventListener("visibilitychange", vis);
 
     const mm = gsap.matchMedia();
@@ -94,6 +121,7 @@ export function Motion() {
     return () => {
       rev.disconnect(); mo.disconnect(); mm.revert();
       window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointermove", tiltMove);
       document.removeEventListener("visibilitychange", vis);
       if (raf) cancelAnimationFrame(raf);
     };

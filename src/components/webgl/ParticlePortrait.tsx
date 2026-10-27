@@ -17,6 +17,7 @@ const vert = /* glsl */ `
   uniform float uForce;
   uniform float uSize;
   uniform float uPR;
+  uniform float uLight;
   varying vec3 vColor;
   varying float vAlpha;
   void main() {
@@ -37,7 +38,8 @@ const vert = /* glsl */ `
     vec4 mv = modelViewMatrix * vec4(pos, 1.0);
     gl_Position = projectionMatrix * mv;
     gl_PointSize = uSize * uPR * (1.0 + f * 1.6) / -mv.z;
-    vColor = aColor + f * vec3(0.25, 0.3, 0.6);
+    vec3 base = mix(aColor, aColor * 0.62 + vec3(0.02, 0.03, 0.12), uLight);
+    vColor = base + f * mix(vec3(0.25, 0.3, 0.6), vec3(0.05, 0.1, 0.45), uLight);
     vAlpha = (0.35 + 0.65 * p) * (1.0 - uScroll * 0.85);
   }
 `;
@@ -84,7 +86,12 @@ export function ParticlePortrait({ src, alt }: { src: string; alt: string }) {
       uForce: { value: 0 },
       uSize: { value: 0 },
       uPR: { value: renderer.getPixelRatio() },
+      uLight: { value: useUI.getState().theme === "light" ? 1 : 0 },
     };
+    const unsub = useUI.subscribe((s) => {
+      uniforms.uLight.value = s.theme === "light" ? 1 : 0;
+      if (still && built) renderer.render(scene, camera);
+    });
     let points: THREE.Points | null = null;
     let raf = 0, visible = true, alive = true, built = false;
     const mouse = new THREE.Vector2(9, 9), tilt = new THREE.Vector2(0, 0);
@@ -143,6 +150,7 @@ export function ParticlePortrait({ src, alt }: { src: string; alt: string }) {
       points = new THREE.Points(geo, mat);
       group.add(points);
       built = true;
+      useUI.getState().setParticles(rnd.length);
       host.classList.add("ready");
       size();
       renderer.render(scene, camera);
@@ -207,6 +215,7 @@ export function ParticlePortrait({ src, alt }: { src: string; alt: string }) {
 
     return () => {
       alive = false;
+      unsub();
       if (raf) cancelAnimationFrame(raf);
       io.disconnect(); ro.disconnect(); st?.kill();
       host.removeEventListener("pointermove", onMove);

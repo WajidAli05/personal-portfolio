@@ -11,6 +11,7 @@ export function Hero() {
   const root = useRef<HTMLElement>(null);
   const typed = useRef<HTMLSpanElement>(null);
   const introDone = useUI((s) => s.introDone);
+  const particles = useUI((s) => s.particles);
   const B = brand;
 
   useGSAP(() => {
@@ -82,7 +83,9 @@ export function Hero() {
             <div className="hv-ring" aria-hidden="true" />
             <ParticlePortrait src="/img/wajid.webp" alt="Wajid Ali, arms crossed, in a navy track jacket" />
             <div className="hv-chip hv-chip-a"><Icon name="badge" /><span><b>IEEE published</b><small>NLBSE &apos;25 · ICSE</small></span></div>
-            <div className="hv-chip hv-chip-b mono" aria-hidden="true"><Icon name="pointer" />move your cursor</div>
+            <span className="hv-corners" aria-hidden="true"><i /><i /><i /><i /></span>
+            <div className="hud hud-tl mono" aria-hidden="true"><b>LOC</b> 33.68°N 73.05°E</div>
+            <div className="hud hud-bl mono" aria-hidden="true"><b>PTS</b> {particles ? particles.toLocaleString("en-US") : "···"} <b>· LIVE</b></div>
           </div>
         </div>
 
