@@ -1,6 +1,6 @@
 # Wajid Ali · Portfolio
 
-Next.js 16 (static export) · Tailwind CSS 4 · Three.js. The design decisions are in `docs/design-package.md`.
+Next.js 16 (static export) · Tailwind CSS 4 · Paper Shaders (animated background) · react-icons. The design decisions are in `docs/design-package.md`.
 
 ## Run it
 
@@ -17,9 +17,9 @@ npm start        # serves /out locally
 |---|---|
 | Every word on the page | `src/lib/content.ts` |
 | Colors, type, layout, motion | `src/app/globals.css` |
-| Hero 3D stack (scroll-driven) | `src/components/hero/stackScene.ts`, `Hero.tsx` |
-| Case-study video scrubbing | `src/components/work/ScrubFrame.tsx` |
-| Comment quiz (research section) | `src/components/sections/Quiz.tsx` |
+| Animated background (NeuroNoise shader) | `src/components/Background.tsx` |
+| Sections, in page order | `src/components/sections/` (Hero, Projects, Research, Skills, Experience, Contact) |
+| Tech logos and UI icons | `src/components/icons.tsx` |
 | Images, videos, share image | `public/img`, `public/media`, `public/og.png` |
 | Raw recordings and screenshots (never shipped) | `media-src/` (git-ignored) |
 

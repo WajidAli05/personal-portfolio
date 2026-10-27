@@ -1,5 +1,16 @@
 # Design package: Wajid Ali portfolio
 
+## Revision 2 (owner feedback)
+The owner asked for a direct hero with his details and services, then projects, research and skills, with information grouped into clear sections, more visuals and a modern tech background. Changes:
+- Page order: Hero (name, role, services, stats) → Projects (web apps, websites, with filter tabs) → Research (paper + quiz) → Skills (logo marquee + grouped cards) → Experience and education → Contact with FAQ.
+- Dark theme: navy canvas #060812, indigo #5B63F5 to cyan #4FDCFF accents, glass cards with a cursor spotlight.
+- Background: Paper Shaders NeuroNoise (@paper-design/shaders-react), fixed, capped resolution, frozen under reduced motion, plus a masked dot grid.
+- The scroll-pinned 3D stack hero and scroll-scrubbed case studies were removed; project recordings now play muted while in view, with a pause button.
+- Added the Qatar recruitment web app (two brands, one codebase).
+
+The sections below describe revision 1 and are kept for history.
+
+
 Written before the build, consumed by it. Every viewer-facing line lives verbatim in `src/lib/content.ts`; this file records the decisions behind them. The Higgsfield step of the 10k-websites skill is overridden by the owner: the hero is a code-built Three.js scene, and the case studies scrub the owner's real screen recordings.
 
 ## 1. Brand premise

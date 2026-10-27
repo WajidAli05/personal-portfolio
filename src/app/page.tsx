@@ -1,24 +1,25 @@
+import { Background } from "@/components/Background";
 import { Nav } from "@/components/Nav";
 import { SiteEffects } from "@/components/SiteEffects";
-import { Hero } from "@/components/hero/Hero";
-import { Proof, Sites, Work } from "@/components/sections/Work";
+import { Hero } from "@/components/sections/Hero";
+import { Projects } from "@/components/sections/Projects";
 import { Research } from "@/components/sections/Research";
-import { About, Contact, Faq, Footer, Services } from "@/components/sections/More";
+import { Skills } from "@/components/sections/Skills";
+import { Experience } from "@/components/sections/Experience";
+import { Contact, Footer } from "@/components/sections/Contact";
 
 export default function Page() {
   return (
     <>
+      <Background />
       <SiteEffects />
       <Nav />
       <main id="main" tabIndex={-1}>
         <Hero />
-        <Proof />
-        <Work />
-        <Sites />
+        <Projects />
         <Research />
-        <Services />
-        <About />
-        <Faq />
+        <Skills />
+        <Experience />
         <Contact />
       </main>
       <Footer />
