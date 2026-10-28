@@ -1,9 +1,11 @@
 import { experience, hero, sections } from "@/lib/content";
 import { Icon } from "@/components/icons";
 import { ParticlePortrait } from "@/components/webgl/ParticlePortrait";
+import { ProofCards } from "./ProofCards";
+import { StepFlow } from "./StepFlow";
 
-// Section 1: a short introduction beside the particle portrait, a few numbers, and the
-// three kinds of work I take on.
+// Section 1: a short introduction beside the particle portrait, two proof cards,
+// and the kinds of work I take on.
 export function About() {
   const s = sections.about;
   return (
@@ -14,34 +16,30 @@ export function About() {
           <figcaption>Move your cursor over the portrait</figcaption>
         </figure>
         <div className="about-text" data-reveal>
-          <p className="eyebrow"><span>{s.n}</span>{s.label}</p>
-          <h2 id="about-title">{s.title}</h2>
+          <p className="eyebrow"><span>{s.n}</span><span data-scramble>{s.label}</span></p>
+          <h2 id="about-title" data-split>{s.title}</h2>
           <p>{hero.lede}</p>
           <p>{experience.bio}</p>
-          <dl className="facts">
-            {experience.facts.map((f) => (
-              <div key={f.label}><dt><Icon name={f.icon} />{f.label}</dt><dd>{f.value}</dd></div>
-            ))}
-          </dl>
         </div>
       </div>
 
-      <dl className="stats" data-reveal>
-        {hero.stats.map((st) => (
-          <div key={st.label}>
-            <dt>{st.label}</dt>
-            <dd data-num={st.count || undefined} data-suffix={st.suffix}>{st.value}</dd>
-          </div>
-        ))}
-      </dl>
+      <ProofCards />
 
       <div className="do" data-reveal>
-        <h3 className="sub">{hero.doTitle}</h3>
+        <h3 className="sub" data-split>{hero.doTitle}</h3>
+        <p className="sub-lede">{hero.doLede}</p>
         <ul>
-          {hero.doItems.map((d) => (
+          {hero.doItems.map((d, i) => (
             <li key={d.title}>
-              <span className="do-ico"><Icon name={d.icon} /></span>
-              <div><h4>{d.title}</h4><p>{d.body}</p></div>
+              <span className={`do-ico do-ico-${i}`}>
+                <Icon name={d.icon} />
+                {d.icon === "botmsg" ? <span className="wave" aria-hidden="true"><i /><i /><i /><i /></span> : null}
+              </span>
+              <div>
+                <h4>{d.title}</h4>
+                <p>{d.body}</p>
+                {"steps" in d && d.steps ? <StepFlow steps={d.steps} /> : null}
+              </div>
             </li>
           ))}
         </ul>

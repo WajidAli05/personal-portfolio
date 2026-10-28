@@ -3,7 +3,7 @@ import {
   LuArrowRight, LuArrowUpRight, LuBookOpen, LuBriefcase, LuChartColumn, LuCreditCard, LuDatabase, LuFileText,
   LuGlobe, LuGraduationCap, LuLanguages, LuLayers, LuLock, LuMail, LuMapPin, LuMessageCircle, LuMonitorSmartphone,
   LuPlay, LuReceipt, LuServer, LuShieldCheck, LuSparkles, LuUsers, LuWorkflow, LuCode, LuBrain, LuWrench, LuPlus,
-  LuCopy, LuCheck, LuPause, LuMenu, LuX, LuBadgeCheck, LuBoxes, LuMousePointer2,
+  LuCopy, LuCheck, LuPause, LuMenu, LuX, LuBadgeCheck, LuBoxes, LuMousePointer2, LuBot, LuGamepad2, LuTrophy, LuRotateCcw, LuArrowLeft, LuFlame, LuBotMessageSquare, LuRocket, LuShoppingCart,
 } from "react-icons/lu";
 import {
   SiReact, SiNextdotjs, SiTypescript, SiJavascript, SiTailwindcss, SiThreedotjs, SiGreensock, SiRedux, SiHtml5, SiCss,
@@ -18,7 +18,9 @@ export const ui: Record<string, IconType> = {
   layers: LuLayers, lock: LuLock, mail: LuMail, pin: LuMapPin, chat: LuMessageCircle, sites: LuMonitorSmartphone,
   play: LuPlay, pause: LuPause, receipt: LuReceipt, backend: LuServer, shield: LuShieldCheck, sparkles: LuSparkles,
   users: LuUsers, systems: LuWorkflow, code: LuCode, brain: LuBrain, tools: LuWrench, plus: LuPlus, copy: LuCopy,
-  check: LuCheck, menu: LuMenu, x: LuX, badge: LuBadgeCheck, pointer: LuMousePointer2,
+  check: LuCheck, menu: LuMenu, x: LuX, badge: LuBadgeCheck, pointer: LuMousePointer2, bot: LuBot, game: LuGamepad2,
+  trophy: LuTrophy, again: LuRotateCcw, back: LuArrowLeft, flame: LuFlame, botmsg: LuBotMessageSquare, rocket: LuRocket,
+  cart: LuShoppingCart,
 };
 
 export function Icon({ name, className }: { name: string; className?: string }) {

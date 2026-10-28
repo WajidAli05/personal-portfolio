@@ -3,11 +3,12 @@ import { Icon, Tech } from "@/components/icons";
 import { SecHead } from "@/components/SecHead";
 
 // One row per group: the group name on the left, the tools on the right.
+// Each row slides in and its chips pop in as it scrolls into view (see Motion).
 export function Skills() {
   return (
     <section className="sec" id="skills" aria-labelledby="skills-title">
       <SecHead s={sections.skills} id="skills-title" />
-      <div className="rows" data-reveal>
+      <div className="rows" data-rows>
         {skills.groups.map((g) => (
           <div className="row" key={g.name}>
             <h3 className="row-key">{g.name}</h3>

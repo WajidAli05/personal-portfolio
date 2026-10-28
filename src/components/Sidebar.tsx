@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { contact, hero, nav } from "@/lib/content";
 import { Icon, brand } from "@/components/icons";
-import { gsap, useGSAP, reduced } from "@/lib/gsap";
+import { gsap, SplitText, useGSAP, reduced } from "@/lib/gsap";
 import { useUI } from "@/lib/store";
 
 // The fixed left column on wide screens (the page intro on phones): who I am, a section
@@ -24,14 +24,17 @@ export function Sidebar() {
 
   useGSAP(() => {
     if (reduced()) return;
-    gsap.fromTo("[data-in]", { y: 14, opacity: 0 }, { y: 0, opacity: 1, animation: "none", duration: 0.9, stagger: 0.07, ease: "power3.out", delay: 0.1 });
+    const name = SplitText.create(".side-name", { type: "chars", mask: "chars" });
+    gsap.from(name.chars, { yPercent: 110, duration: 0.9, stagger: 0.035, ease: "power4.out", delay: 0.05 });
+    gsap.fromTo("[data-in]", { y: 14, opacity: 0 }, { y: 0, opacity: 1, animation: "none", duration: 0.9, stagger: 0.07, ease: "power3.out", delay: 0.35 });
+    return () => name.revert();
   }, { scope: root });
 
   return (
     <header className="side" ref={root}>
       <div className="side-in">
         <div className="side-top">
-          <h1 className="side-name" data-in>{hero.name}</h1>
+          <h1 className="side-name">{hero.name}</h1>
           <p className="side-role" data-in>{hero.title}</p>
           <p className="side-tag" data-in>{hero.tagline}</p>
           <p className="status" data-in><i aria-hidden="true" />{hero.status}</p>

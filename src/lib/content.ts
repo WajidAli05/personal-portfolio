@@ -29,35 +29,35 @@ export const hero = {
   name: "Wajid Ali",
   role: "Full-stack engineer and published researcher",
   title: "Full-stack engineer",
-  tagline: "I build business systems and websites that stay secure, fast and simple to use.",
+  tagline: "I build web and mobile apps with AI inside: chatbots, voice agents and more. Example: the system a family dental clinic runs on every day.",
   lede: "I build web apps, business systems and 3D marketing sites with React, Next.js and Node. I care about the parts most projects skip: permissions, encryption, backups and clear docs.",
   location: "Islamabad, Pakistan",
   reach: "Clients in Pakistan, the US, Australia and Qatar",
   cta: "Email me",
   secondary: "See my projects",
-  stats: [
-    { value: "8", count: 8, suffix: "", label: "projects built" },
-    { value: "58k+", count: 58, suffix: "k+", label: "lines in one clinic system" },
-    { value: "4", count: 4, suffix: "", label: "countries served" },
-    { value: "IEEE", count: 0, suffix: "", label: "published, NLBSE '25" },
+  proof: [
+    { kind: "code", value: "58k+", count: 58, suffix: "k+", label: "lines of code in one clinic system", sub: "Dental OS, built end to end" },
+    { kind: "badge", value: "IEEE", count: 0, suffix: "", label: "published, NLBSE '25", sub: "IEEE/ACM, co-located with ICSE 2025" },
   ],
   builds: ["business systems", "3D marketing sites", "secure APIs", "NLP research tools"],
   doTitle: "What I do",
+  doLede: "Web and mobile solutions for small and mid-sized businesses across the globe, in fields like medical and e-commerce.",
   doItems: [
     {
-      icon: "systems",
-      title: "Business systems",
-      body: "Clinic, store and admin systems with real roles and permissions, private records and billing that balances.",
-    },
-    {
       icon: "sites",
-      title: "Marketing websites",
-      body: "Fast sites with tasteful 3D and motion that work well on phones and lead to one action: a call, a message or a booking.",
+      title: "Web and mobile apps",
+      body: "Clinic systems, online stores and booking apps that owners, staff and customers use every day.",
     },
     {
-      icon: "backend",
-      title: "APIs, payments and security",
-      body: "REST APIs, sign-in, Stripe, encryption, audit trails and backups. Done properly, before something breaks.",
+      icon: "botmsg",
+      title: "AI agents",
+      body: "Voice agents and chatbots built into your app or website, so customers get answers at any hour.",
+    },
+    {
+      icon: "rocket",
+      title: "Full-stack, start to finish",
+      body: "Every step is covered, from your pain points and requirements to deployment and rolling out updates.",
+      steps: ["Pain points", "Requirements", "Design", "Build", "Deploy", "Updates"],
     },
   ],
 };
@@ -82,6 +82,9 @@ export type App = {
   screens?: { src: string; alt: string }[];
   link?: { label: string; href: string };
   note?: string;
+  short: string;
+  tags: { icon: string; text: string }[];
+  floaters: { icon: string; text: string }[];
 };
 
 export const apps: App[] = [
@@ -110,6 +113,9 @@ export const apps: App[] = [
       { src: "/img/dentalos-4.webp", alt: "Lab dues per partner lab" },
     ],
     note: "All screens use demo data.",
+    short: "The system a family dental clinic runs its whole day on.",
+    tags: [{ icon: "lock", text: "Encrypted records" }, { icon: "users", text: "4 user roles" }, { icon: "globe", text: "3 languages" }],
+    floaters: [{ icon: "check", text: "Appointment booked" }, { icon: "lock", text: "Record encrypted" }, { icon: "receipt", text: "Invoice paid" }],
   },
   {
     id: "commerce",
@@ -127,6 +133,9 @@ export const apps: App[] = [
     ],
     stack: ["React 19", "Tailwind CSS", "shadcn/ui", "Ant Design", "Express 5", "MongoDB", "Stripe", "Cloudinary"],
     note: "Store branding blurred. Customer pages left out on purpose.",
+    short: "A US online store and its admin panel, both run by one API.",
+    tags: [{ icon: "card", text: "Stripe checkout" }, { icon: "users", text: "Google sign-in" }, { icon: "chart", text: "Live sales charts" }],
+    floaters: [{ icon: "card", text: "Payment confirmed" }, { icon: "receipt", text: "Order received" }, { icon: "chart", text: "Dashboard updated" }],
   },
   {
     id: "qatar",
@@ -147,6 +156,9 @@ export const apps: App[] = [
       { icon: "layers", title: "Checked brand config", body: "Brand details live in one config file that stops the app if anything is missing." },
     ],
     stack: ["React 19", "Vite", "Tailwind CSS", "DaisyUI", "React Router", "EmailJS", "Netlify"],
+    short: "One app that hires riders and construction workers for two brands.",
+    tags: [{ icon: "layers", text: "Two brands" }, { icon: "file", text: "Role-aware forms" }, { icon: "chat", text: "WhatsApp in one tap" }],
+    floaters: [{ icon: "file", text: "Application received" }, { icon: "chat", text: "WhatsApp opened" }, { icon: "layers", text: "Brand switched" }],
   },
 ];
 
@@ -162,6 +174,7 @@ export const sites = {
       body: "A 3D IV bag drains as you scroll while a recharge meter climbs. English and Spanish, drip finder, booking form.",
       stack: ["Next.js 16", "Three.js", "GSAP"],
       href: "https://revibe-ivs.vercel.app",
+      feature: "3D IV bag on scroll",
     },
     {
       kind: "Physio and aesthetics clinic",
@@ -171,6 +184,7 @@ export const sites = {
       body: "Interactive 3D body and face maps. Tap where it hurts and see the matching care.",
       stack: ["Next.js 16", "React Three Fiber", "GSAP"],
       href: "https://medicos-life.vercel.app",
+      feature: "Tap-to-explore body map",
     },
     {
       kind: "Dental clinic",
@@ -180,6 +194,7 @@ export const sites = {
       body: "A 3D tooth hero, a mouth explorer and before and after sliders. English and Urdu, bookings over WhatsApp.",
       stack: ["Next.js 16", "Three.js", "GSAP"],
       href: "https://mh-dental-clinic.vercel.app",
+      feature: "3D tooth explorer",
     },
     {
       kind: "Building and renovation",
@@ -190,6 +205,7 @@ export const sites = {
       body: "Built with an agency team: services, project case studies, service areas and a quote request flow.",
       stack: ["Agency build", "Responsive web"],
       href: "https://jfhbuilding.com.au",
+      feature: "Quote request flow",
     },
   ],
 };
@@ -273,21 +289,21 @@ export const experience = {
       when: "2025 to now",
       what: "Freelance full-stack developer",
       where: "Self-employed, Islamabad",
-      body: "Built and shipped Dental OS. Delivered web apps and sites for hotel, recruitment, healthcare, e-commerce and construction businesses.",
+      body: "AI-integrated web and mobile apps, and modern websites that turn visitors into leads, for small and mid-sized businesses. Built and shipped Dental OS.",
     },
     {
       icon: "book",
       when: "Apr 2025",
       what: "Co-author, CodeComClassify",
       where: "IEEE/ACM NLBSE 2025 at ICSE, Ottawa",
-      body: "Transformer models that classify code comments across Java, Python and Pharo.",
+      body: "A multi-class classification problem: sorting code comments into 19 categories with transformer models, across Java, Python and Pharo.",
     },
     {
-      icon: "briefcase",
+      icon: "cart",
       when: "Jul to Aug 2024",
       what: "Software developer",
       where: "Octaloop Technologies, Islamabad",
-      body: "Worked in an existing codebase: small features, bug fixes and testing with the team.",
+      body: "Worked on an e-commerce project in an existing codebase: features, bug fixes and testing with the team.",
     },
     {
       icon: "grad",
@@ -302,6 +318,8 @@ export const experience = {
     title: "Speech Anxiety",
     body: "What happens in the brain when words won't come, and how to get through it on stage.",
     href: "https://youtu.be/nDiHeJbvvQQ",
+    thumb: "/img/ted-talk.webp",
+    cta: "Watch the talk",
   },
 };
 
@@ -338,13 +356,12 @@ export const cities = [
 
 export const footer = {
   line: "Wajid Ali, full-stack engineer.",
-  note: "Client projects are shown without names. App screens use demo data.",
 };
 
 /* ───────────── Section headings ───────────── */
 export const sections = {
   about: { n: "01", label: "About", title: "Hi, I'm Wajid." },
-  projects: { n: "02", label: "Projects", title: "Selected work", lede: "Three systems that businesses run on every day, then four marketing websites. Client names are left out." },
+  projects: { n: "02", label: "Projects", title: "Recent work", lede: "Three apps businesses run on every day, then four websites. Open an app for the full story." },
   research: { n: "03", label: "Research", title: "Published research", lede: "Natural language processing for software engineering, published at IEEE/ACM NLBSE 2025." },
   skills: { n: "04", label: "Skills", title: "Skills and tools", lede: "What I use every week, grouped by where it sits in a project." },
   experience: { n: "05", label: "Experience", title: "Experience and education", lede: "Where I have worked, what I studied and where I have spoken." },

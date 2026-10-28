@@ -7,7 +7,7 @@ Next.js 16 (static export) · Tailwind CSS 4 · GSAP (ScrollTrigger) · Lenis ·
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build    # writes the finished site to /out
+npm run build    # writes the finished site to /out (then flattens prefetch files for static hosts)
 npm start        # serves /out locally
 ```
 
@@ -19,6 +19,7 @@ npm start        # serves /out locally
 | Colors, type, layout, motion | `src/app/globals.css` |
 | Left column and phone top bar | `src/components/Sidebar.tsx`, `src/components/MobileBar.tsx` |
 | Sections, in page order | `src/components/sections/` (About, Projects, Research, Skills, Experience, Contact) |
+| Project detail pages | `src/app/projects/[id]/page.tsx` (one per web app in `content.ts`) |
 | Tech logos and UI icons | `src/components/icons.tsx` |
 | WebGL particle portrait and globe | `src/components/webgl/` |
 | Smooth scroll and reveal motion | `src/components/fx/` |

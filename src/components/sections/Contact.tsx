@@ -26,16 +26,11 @@ export function Contact() {
         </div>
         <div className="contact-globe">
           <Globe cities={cities} />
-          <ul className="legend">
-            {cities.map((c) => (
-              <li key={c.name} className={c.home ? "home" : undefined}><i aria-hidden="true" />{c.name}{c.home ? <small>home</small> : null}</li>
-            ))}
-          </ul>
         </div>
       </div>
 
       <div className="faq" data-reveal>
-        <h3 className="sub">{faq.title}</h3>
+        <h3 className="sub" data-split>{faq.title}</h3>
         {faq.items.map((f) => (
           <details key={f.q} name="faq">
             <summary><span>{f.q}</span><Icon name="plus" /></summary>
@@ -47,12 +42,11 @@ export function Contact() {
   );
 }
 
-export function Footer() {
+export function Footer({ top = "#about" }: { top?: string }) {
   return (
     <footer className="footer">
       <p>{footer.line} © {new Date().getFullYear()}</p>
-      <p className="small">{footer.note}</p>
-      <a className="link" href="#about">Back to top<Icon name="arrow" className="up" /></a>
+      <a className="link" href={top}>Back to top<Icon name="arrow" className="up" /></a>
     </footer>
   );
 }

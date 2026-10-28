@@ -1,5 +1,26 @@
 # Design package: Wajid Ali portfolio
 
+## Revision 9 (owner feedback: livelier What I do and Experience)
+- What I do: each row has a coloured icon tile (teal devices, sand chatbot with live sound-wave bars, ink rocket) with a soft pulse ring and a small idle motion.
+- The six project steps play as a journey (StepFlow): a line runs from stage to stage, each stage turns into a check with a confetti burst, the final stage gets a bigger burst, then it loops. It only runs while on screen; with reduced motion all stages show as done.
+- Experience: a timeline with coloured icons (work, research, e-commerce, education). The line draws as you scroll, icons pop in, text slides in after, and the current role has a pulsing Now badge.
+- Note for future edits: never give a GSAP-animated element a CSS transition on transform; it freezes the tween. Put hover transforms on a child instead.
+
+## Revision 8 (owner feedback: clearer sections, text motion)
+- Each section opens with a rule whose teal bar draws in and a large outlined section number. Projects, Skills and Contact sit on a tinted panel (full-width band on phones), so the background changes whenever a new section starts.
+- Text motion: section titles and sub-headings rise in word by word (GSAP SplitText), the small section labels decode into place (ScrambleText), and the name in the left column rises in letter by letter on load. All of it is skipped with reduced motion.
+- The city list under the contact globe was removed.
+
+## Revision 7 (owner feedback: content and liveliness)
+- Hero line now leads with web and mobile apps with AI inside (chatbots, voice agents), with the family dental clinic system as the example.
+- About: quick facts and two of the four numbers removed. The remaining two are 3D proof cards in their own colours: teal with a floating stack of code sheets (58k+ lines), sand with a spinning NLBSE badge (IEEE). Both tilt toward the cursor.
+- What I do: web and mobile apps for SMBs worldwide (medical, e-commerce), AI agents (voice agents, chatbots), and full-stack delivery shown as six steps from pain points to updates.
+- Projects: "Recent work". App cards are short (one line, three facts, stack logos) with status toasts that pop over the recording; each opens its own page at /projects/<id>/ with the overview, everything built, stack, screens and walkthrough. Website cards add a live badge, a floating feature tag and a slow drift on the screenshot.
+- Research: the three numbers are coloured cards with small pictures (19 lighting cells, the three languages, an 81% ring). The quiz is a mini game: number keys, score, streak, confetti on a right answer, a shake on a wrong one.
+- Skills: each row slides in on scroll and its chips pop in after.
+- Experience: updated entries, and the TED-Ed talk has its own card with the talk thumbnail.
+- Build: `npm run build` also runs scripts/flatten-rsc.mjs, which copies Next's nested prefetch files to the flat names browsers request, so static hosts serve them.
+
 ## Revision 6 (owner feedback: own identity, modern and calm, easy to follow)
 Revision 5 looked too much like the owner's MH Dental site. This revision replaces it, based on calm developer portfolios people often cite (Brittany Chiang, Emil Kowalski, Paco Coursey, Lee Robinson): restrained colour, type doing the work, generous space, short lists.
 - Layout: on wide screens a fixed left column holds the name, role, one-line intro, availability, a numbered section menu and the contact buttons; the content scrolls on the right. On phones the same intro sits at the top and a slim top bar always names the current section, with a simple full-screen menu.
