@@ -14,6 +14,7 @@ export const contact = {
 };
 
 export const nav = [
+  { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
   { label: "Research", href: "#research" },
   { label: "Skills", href: "#skills" },
@@ -27,6 +28,8 @@ export const hero = {
   hello: "Hi, I'm",
   name: "Wajid Ali",
   role: "Full-stack engineer and published researcher",
+  title: "Full-stack engineer",
+  tagline: "I build business systems and websites that stay secure, fast and simple to use.",
   lede: "I build web apps, business systems and 3D marketing sites with React, Next.js and Node. I care about the parts most projects skip: permissions, encryption, backups and clear docs.",
   location: "Islamabad, Pakistan",
   reach: "Clients in Pakistan, the US, Australia and Qatar",
@@ -48,8 +51,8 @@ export const hero = {
     },
     {
       icon: "sites",
-      title: "Cinematic websites",
-      body: "Scroll-driven sites with real 3D that load fast, work on phones and are built around one action: the booking.",
+      title: "Marketing websites",
+      body: "Fast sites with tasteful 3D and motion that work well on phones and lead to one action: a call, a message or a booking.",
     },
     {
       icon: "backend",
@@ -307,7 +310,7 @@ export const contactSection = {
   title: "Tell me what you're building.",
   body: "A short email is enough: what it is, who uses it, and when you need it. I'll reply with questions or a plan.",
   primary: "Email me",
-  copy: "Copy",
+  copy: "Copy address",
   copied: "Copied",
   whatsapp: "WhatsApp",
   upwork: "Hire on Upwork",
@@ -336,4 +339,14 @@ export const cities = [
 export const footer = {
   line: "Wajid Ali, full-stack engineer.",
   note: "Client projects are shown without names. App screens use demo data.",
+};
+
+/* ───────────── Section headings ───────────── */
+export const sections = {
+  about: { n: "01", label: "About", title: "Hi, I'm Wajid." },
+  projects: { n: "02", label: "Projects", title: "Selected work", lede: "Three systems that businesses run on every day, then four marketing websites. Client names are left out." },
+  research: { n: "03", label: "Research", title: "Published research", lede: "Natural language processing for software engineering, published at IEEE/ACM NLBSE 2025." },
+  skills: { n: "04", label: "Skills", title: "Skills and tools", lede: "What I use every week, grouped by where it sits in a project." },
+  experience: { n: "05", label: "Experience", title: "Experience and education", lede: "Where I have worked, what I studied and where I have spoken." },
+  contact: { n: "06", label: "Contact", title: "Let's work together", lede: "A short email is enough: what it is, who uses it and when you need it. I'll reply with questions or a plan." },
 };

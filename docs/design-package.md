@@ -1,5 +1,26 @@
 # Design package: Wajid Ali portfolio
 
+## Revision 6 (owner feedback: own identity, modern and calm, easy to follow)
+Revision 5 looked too much like the owner's MH Dental site. This revision replaces it, based on calm developer portfolios people often cite (Brittany Chiang, Emil Kowalski, Paco Coursey, Lee Robinson): restrained colour, type doing the work, generous space, short lists.
+- Layout: on wide screens a fixed left column holds the name, role, one-line intro, availability, a numbered section menu and the contact buttons; the content scrolls on the right. On phones the same intro sits at the top and a slim top bar always names the current section, with a simple full-screen menu.
+- Way-finding: each menu item has a short line that fills as you read that section (ScrollTrigger progress, shared through Zustand), so readers always know where they are and how much is left.
+- Palette: warm paper #f6f5f1, white cards with hairline borders, ink #1d2023, one deep teal accent #1d6b62 for actions and highlights, and sand #c4842f only for the home marker on the globe. Light only.
+- Type: Geist for text and headings, Geist Mono for small labels, dates and numbers in the menu.
+- Signature: the particle portrait stays, smaller, in a quiet dotted panel in About. It assembles once and reacts gently to the cursor; no scroll scatter.
+- Sections in order: About (intro, quick facts, four numbers, what I do), Projects (three app cards, then four website cards), Research (paper card and the quiz), Skills (one row per group), Experience (date column rows and the talk), Contact (email first, then WhatsApp, Upwork, LinkedIn, the globe and the FAQ).
+- Motion: Lenis smooth scrolling on the GSAP ticker, a short fade-in for the sidebar on load, content fading up 18px once as it enters, numbers counting up once. Everything is readable with motion off.
+- Removed: poster type, stickers, ribbons, colour bands, preloader, custom cursor, holographic frames and the shader background.
+
+## Revision 5 (replaced by revision 6)
+- Direction taken from the owner's MH Dental Clinic site: light grey paper (#eceeea), ink poster type, a lime marker (#d4f26a) for highlights, aqua (#3fc8bd) for motion and 3D, indigo kept for the main email button and focus rings. Dark mode removed; light is the only theme.
+- Type: Bricolage Grotesque (condensed, uppercase) for poster words, Instrument Serif italic for the soft word in each heading, Hanken Grotesk for body, JetBrains Mono for labels. Headings use `*serif*` and `==marker==` markup from `content.ts`, parsed by `ui/Rich.tsx`.
+- Hero is a poster: WAJID behind the particle portrait, ALI in front, an aqua scribble ring, spiky stickers (IEEE published, 4 countries, 58k+ lines) and corner labels. Letters rise in on load; on scroll the back word grows and fades, the front word slides away and the portrait drifts apart. Phones stack the poster above the text.
+- Tilted marquee ribbons (lime and ink) between sections; scroll speed pushes their pace and skew.
+- New "What I do" bento between the hero and Projects: three service tiles with outlined numbers and four count-up stats.
+- Research sits on a full-bleed lime band and Skills on an ink band; both scale in from rounded cards as they enter (`data-scale`). The footer ends with a large poster line that grows into view (`data-grow`).
+- Cards: ink outline with an offset ink shadow on hover. Buttons fill like liquid from below. Project media keeps the holographic boot-up, now with ink corners and a lime scan line.
+- Scrolling: Lenis driven by the GSAP ticker, so ScrollTrigger, the pinned website gallery and the WebGL scenes all read the same smoothed position.
+
 ## Revision 4 (owner feedback: futuristic, consistent, themes)
 - Nav: floating glass capsule without the name: animated WA monogram, numbered links with a sliding glow indicator, live Islamabad clock, theme switch, email button; hides on scroll down, scroll progress along its base; full-screen circular-reveal menu on small screens.
 - Dark and light themes from one token set; saved choice, system default, set before first paint; circular View Transition sweep from the toggle. Shader background and particle portrait retint per theme.

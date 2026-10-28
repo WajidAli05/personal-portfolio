@@ -1,45 +1,26 @@
-import { skills } from "@/lib/content";
-import { Icon, Tech, tech } from "@/components/icons";
+import { sections, skills } from "@/lib/content";
+import { Icon, Tech } from "@/components/icons";
 import { SecHead } from "@/components/SecHead";
 
-const groupIcon: Record<string, string> = {
-  "Frontend": "sites",
-  "Backend": "backend",
-  "Databases": "db",
-  "AI and research": "brain",
-  "Tools and hosting": "tools",
-};
-
+// One row per group: the group name on the left, the tools on the right.
 export function Skills() {
-  const logos = skills.groups.flatMap((g) => g.items).filter((n) => tech[n] && !["REST APIs", "BERT models", "NLP", "Zustand"].includes(n));
   return (
-    <section className="section" id="skills" aria-labelledby="skills-title">
-      <div className="container">
-        <SecHead n="03" label="skills" id="skills-title" title={skills.title} lede={skills.lede} />
-      </div>
-
-      <div className="marquee" aria-hidden="true">
-        <div className="track">
-          {[...logos, ...logos].map((n, i) => <span className="logo" key={i}><Tech name={n} />{n}</span>)}
-        </div>
-      </div>
-
-      <div className="container">
-        <div className="skill-grid" data-reveal>
-          {skills.groups.map((g, gi) => (
-            <article className="card skill-card" key={g.name} style={{ ["--i" as string]: gi }}>
-              <h3><Icon name={groupIcon[g.name] ?? "code"} />{g.name}</h3>
-              <ul>
-                {g.items.map((s) => <li className="skill" key={s}><Tech name={s} />{s}</li>)}
-              </ul>
-            </article>
-          ))}
-          <article className="card skill-card" style={{ ["--i" as string]: skills.groups.length }}>
-            <h3><Icon name="shield" />{skills.practicesTitle}</h3>
-            <ul>
-              {skills.practices.map((p) => <li className="skill" key={p}><Icon name="check" className="" />{p}</li>)}
+    <section className="sec" id="skills" aria-labelledby="skills-title">
+      <SecHead s={sections.skills} id="skills-title" />
+      <div className="rows" data-reveal>
+        {skills.groups.map((g) => (
+          <div className="row" key={g.name}>
+            <h3 className="row-key">{g.name}</h3>
+            <ul className="chips">
+              {g.items.map((s) => <li className="chip" key={s}><Tech name={s} />{s}</li>)}
             </ul>
-          </article>
+          </div>
+        ))}
+        <div className="row">
+          <h3 className="row-key">{skills.practicesTitle}</h3>
+          <ul className="chips">
+            {skills.practices.map((p) => <li className="chip chip-soft" key={p}><Icon name="check" />{p}</li>)}
+          </ul>
         </div>
       </div>
     </section>

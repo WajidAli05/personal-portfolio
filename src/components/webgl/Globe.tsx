@@ -36,7 +36,7 @@ const atmoVert = /* glsl */ `
 `;
 const atmoFrag = /* glsl */ `
   varying vec3 vN;
-  void main() { float i = pow(0.72 - dot(vN, vec3(0.0, 0.0, 1.0)), 3.0); gl_FragColor = vec4(0.35, 0.55, 1.0, 1.0) * i; }
+  void main() { float i = pow(0.72 - dot(vN, vec3(0.0, 0.0, 1.0)), 3.0); gl_FragColor = vec4(0.12, 0.42, 0.39, clamp(i * 0.9, 0.0, 1.0)); }
 `;
 
 export function Globe({ cities }: { cities: City[] }) {
@@ -57,8 +57,8 @@ export function Globe({ cities }: { cities: City[] }) {
     scene.add(globe);
 
     // occluding core + rim glow
-    globe.add(new THREE.Mesh(new THREE.SphereGeometry(0.985, 64, 64), new THREE.MeshBasicMaterial({ color: 0x080c1c })));
-    const atmo = new THREE.Mesh(new THREE.SphereGeometry(1.18, 64, 64), new THREE.ShaderMaterial({ vertexShader: atmoVert, fragmentShader: atmoFrag, blending: THREE.AdditiveBlending, side: THREE.BackSide, transparent: true, depthWrite: false }));
+    globe.add(new THREE.Mesh(new THREE.SphereGeometry(0.985, 64, 64), new THREE.MeshBasicMaterial({ color: 0x16403b })));
+    const atmo = new THREE.Mesh(new THREE.SphereGeometry(1.18, 64, 64), new THREE.ShaderMaterial({ vertexShader: atmoVert, fragmentShader: atmoFrag, blending: THREE.NormalBlending, side: THREE.BackSide, transparent: true, depthWrite: false }));
     scene.add(atmo);
 
     const home = cities.find((c) => c.home)!;
@@ -69,10 +69,10 @@ export function Globe({ cities }: { cities: City[] }) {
     // markers + arcs
     cities.forEach((c, idx) => {
       const p = toVec(c.lat, c.lon, 1.003);
-      const dot = new THREE.Mesh(new THREE.SphereGeometry(c.home ? 0.022 : 0.016, 16, 16), new THREE.MeshBasicMaterial({ color: c.home ? 0x4fdcff : 0xa5abff }));
+      const dot = new THREE.Mesh(new THREE.SphereGeometry(c.home ? 0.022 : 0.016, 16, 16), new THREE.MeshBasicMaterial({ color: c.home ? 0xf0b45c : 0xffffff }));
       dot.position.copy(p);
       globe.add(dot);
-      const ring = new THREE.Mesh(new THREE.RingGeometry(0.03, 0.038, 40), new THREE.MeshBasicMaterial({ color: c.home ? 0x4fdcff : 0xa5abff, transparent: true, side: THREE.DoubleSide, depthWrite: false }));
+      const ring = new THREE.Mesh(new THREE.RingGeometry(0.03, 0.038, 40), new THREE.MeshBasicMaterial({ color: c.home ? 0xf0b45c : 0xffffff, transparent: true, side: THREE.DoubleSide, depthWrite: false }));
       ring.position.copy(p.clone().multiplyScalar(1.002));
       ring.lookAt(p.clone().multiplyScalar(2));
       ring.userData.phase = idx * 0.37;
@@ -97,7 +97,7 @@ export function Globe({ cities }: { cities: City[] }) {
       const aT = new Float32Array(uv.count);
       for (let i = 0; i < uv.count; i++) aT[i] = uv.getX(i);
       tube.setAttribute("aT", new THREE.BufferAttribute(aT, 1));
-      const m = new THREE.ShaderMaterial({ vertexShader: arcVert, fragmentShader: arcFrag, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, uniforms: { uTime: { value: 0 }, uOffset: { value: idx * 0.31 }, uColor: { value: new THREE.Color(0x8fa0ff) } } });
+      const m = new THREE.ShaderMaterial({ vertexShader: arcVert, fragmentShader: arcFrag, transparent: true, depthWrite: false, blending: THREE.NormalBlending, uniforms: { uTime: { value: 0 }, uOffset: { value: idx * 0.31 }, uColor: { value: new THREE.Color(0xf0b45c) } } });
       arcMats.push(m);
       globe.add(new THREE.Mesh(tube, m));
     });
@@ -115,7 +115,7 @@ export function Globe({ cities }: { cities: City[] }) {
       }
       const g = new THREE.BufferGeometry();
       g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-      globe.add(new THREE.Points(g, new THREE.PointsMaterial({ color: 0xb4bcff, size: 0.02, sizeAttenuation: true, transparent: true, opacity: 0.95 })));
+      globe.add(new THREE.Points(g, new THREE.PointsMaterial({ color: 0x9fd3c9, size: 0.02, sizeAttenuation: true, transparent: true, opacity: 0.95 })));
       host.classList.add("ready");
       render();
     }).catch(() => host.classList.add("ready"));
@@ -176,7 +176,7 @@ export function Globe({ cities }: { cities: City[] }) {
   }, [cities]);
 
   return (
-    <div className="globe" ref={wrap} data-cursor="Drag" role="img" aria-label="A globe with arcs from Islamabad to client cities: Miami, Melbourne and Doha">
+    <div className="globe" ref={wrap} role="img" aria-label="A globe with arcs from Islamabad to client cities: Miami, Melbourne and Doha">
       <canvas ref={canvas} aria-hidden="true" />
     </div>
   );

@@ -27,7 +27,7 @@ export function Quiz() {
     <div className="card quiz" data-reveal>
       <div className="quiz-head" style={{ ["--i" as string]: 0 }}>
         <div>
-          <h3 className="display"><Icon name="brain" />{quiz.title}</h3>
+          <h3 className="quiz-title"><Icon name="brain" />{quiz.title}</h3>
           <p>{quiz.lede}</p>
         </div>
         <div className="qcount" aria-live="polite">
@@ -67,7 +67,7 @@ export function Quiz() {
               : picked ? <><b>{picked === item.label ? "Correct." : `It's ${item.label}.`}</b> {quiz.categories[item.label]}</>
               : <>Pick the category that fits best.</>}
           </span>
-          {done ? <button type="button" className="btn btn-ghost btn-sm" onClick={reset}>{quiz.again}</button>
+          {done ? <button type="button" className="btn btn-quiet btn-sm" onClick={reset}>{quiz.again}</button>
             : picked ? <button type="button" className="btn btn-primary btn-sm" onClick={next}>{i + 1 === quiz.items.length ? "See your score" : "Next comment"}<Icon name="arrow" className="go" /></button>
             : null}
         </div>

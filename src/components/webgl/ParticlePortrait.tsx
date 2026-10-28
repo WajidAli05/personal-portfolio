@@ -2,8 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { gsap, ScrollTrigger, reduced } from "@/lib/gsap";
-import { useUI } from "@/lib/store";
+import { gsap, reduced } from "@/lib/gsap";
 
 const vert = /* glsl */ `
   attribute vec3 aHome;
@@ -34,13 +33,13 @@ const vert = /* glsl */ `
     pos.xy += normalize(dv + 1e-5) * f * 0.28;
     pos.z += f * 0.45;
     // dissolve while scrolling away
-    pos = mix(pos, aScatter * 1.4 + vec3(0.0, 0.8, 0.0), uScroll * uScroll);
+    pos = mix(pos, aScatter * 0.5 + vec3(0.0, 0.9, 0.0), uScroll * uScroll);
     vec4 mv = modelViewMatrix * vec4(pos, 1.0);
     gl_Position = projectionMatrix * mv;
     gl_PointSize = uSize * uPR * (1.0 + f * 1.6) / -mv.z;
-    vec3 base = mix(aColor, aColor * 0.62 + vec3(0.02, 0.03, 0.12), uLight);
-    vColor = base + f * mix(vec3(0.25, 0.3, 0.6), vec3(0.05, 0.1, 0.45), uLight);
-    vAlpha = (0.35 + 0.65 * p) * (1.0 - uScroll * 0.85);
+    vec3 base = mix(aColor, aColor * 0.92 + vec3(0.0, 0.03, 0.035), uLight);
+    vColor = base + f * mix(vec3(0.25, 0.3, 0.6), vec3(0.02, 0.42, 0.38), uLight);
+    vAlpha = (0.35 + 0.65 * p) * (1.0 - smoothstep(0.0, 0.75, uScroll));
   }
 `;
 const frag = /* glsl */ `
@@ -58,8 +57,6 @@ const frag = /* glsl */ `
 export function ParticlePortrait({ src, alt }: { src: string; alt: string }) {
   const wrap = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
-  const introDone = useUI((s) => s.introDone);
-  const api = useRef<{ assemble: () => void } | null>(null);
 
   useEffect(() => {
     const host = wrap.current!, cv = canvas.current!;
@@ -86,12 +83,8 @@ export function ParticlePortrait({ src, alt }: { src: string; alt: string }) {
       uForce: { value: 0 },
       uSize: { value: 0 },
       uPR: { value: renderer.getPixelRatio() },
-      uLight: { value: useUI.getState().theme === "light" ? 1 : 0 },
+      uLight: { value: 1 },
     };
-    const unsub = useUI.subscribe((s) => {
-      uniforms.uLight.value = s.theme === "light" ? 1 : 0;
-      if (still && built) renderer.render(scene, camera);
-    });
     let points: THREE.Points | null = null;
     let raf = 0, visible = true, alive = true, built = false;
     const mouse = new THREE.Vector2(9, 9), tilt = new THREE.Vector2(0, 0);
@@ -150,7 +143,7 @@ export function ParticlePortrait({ src, alt }: { src: string; alt: string }) {
       points = new THREE.Points(geo, mat);
       group.add(points);
       built = true;
-      useUI.getState().setParticles(rnd.length);
+      if (!still) gsap.to(uniforms.uProgress, { value: 1, duration: 2.4, ease: "power3.inOut", delay: 0.2 });
       host.classList.add("ready");
       size();
       renderer.render(scene, camera);
@@ -169,13 +162,6 @@ export function ParticlePortrait({ src, alt }: { src: string; alt: string }) {
       group.rotation.x += (-tilt.y * 0.2 - group.rotation.x) * 0.05;
       renderer.render(scene, camera);
       raf = requestAnimationFrame(loop);
-    };
-
-    api.current = {
-      assemble: () => {
-        if (still) return;
-        gsap.to(uniforms.uProgress, { value: 1, duration: 2.6, ease: "power3.inOut", delay: 0.15 });
-      },
     };
 
     const img = new Image();
@@ -205,19 +191,11 @@ export function ParticlePortrait({ src, alt }: { src: string; alt: string }) {
     const ro = new ResizeObserver(() => { size(); if (still && built) renderer.render(scene, camera); });
     ro.observe(host);
 
-    let st: ScrollTrigger | undefined;
-    if (!still) {
-      st = ScrollTrigger.create({
-        trigger: host, start: "top top+=80", end: "bottom top",
-        onUpdate: (s) => { uniforms.uScroll.value = s.progress; },
-      });
-    }
 
     return () => {
       alive = false;
-      unsub();
       if (raf) cancelAnimationFrame(raf);
-      io.disconnect(); ro.disconnect(); st?.kill();
+      io.disconnect(); ro.disconnect();
       host.removeEventListener("pointermove", onMove);
       host.removeEventListener("pointerleave", onLeave);
       points?.geometry.dispose();
@@ -226,17 +204,8 @@ export function ParticlePortrait({ src, alt }: { src: string; alt: string }) {
     };
   }, [src]);
 
-  useEffect(() => {
-    if (introDone) {
-      // the image may still be loading; retry briefly until the scene exists
-      let n = 0;
-      const t = setInterval(() => { if (api.current || n++ > 40) { api.current?.assemble(); clearInterval(t); } }, 50);
-      return () => clearInterval(t);
-    }
-  }, [introDone]);
-
   return (
-    <div className="portrait-gl" ref={wrap} data-cursor="Move">
+    <div className="portrait-gl" ref={wrap}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img className="pg-fallback" src={src} alt={alt} width={874} height={1142} />
       <canvas ref={canvas} aria-hidden="true" />

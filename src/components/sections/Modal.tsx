@@ -16,12 +16,12 @@ export function Walkthrough({ src, poster, meta, title }: { src: string; poster:
   const close = () => { vid.current?.pause(); dlg.current?.close(); };
   return (
     <>
-      <button type="button" className="btn btn-ghost btn-sm" onClick={open}>
+      <button type="button" className="btn btn-quiet btn-sm" onClick={open}>
         <Icon name="play" />Watch walkthrough <span className="mono" style={{ fontSize: 11.5, color: "var(--text-3)" }}>{meta}</span>
       </button>
       <dialog ref={dlg} className="modal" aria-label={title} onClick={(e) => { if (e.target === dlg.current) close(); }} onClose={() => vid.current?.pause()}>
         <div className="in">
-          <div className="top"><span>{title}</span><button type="button" className="btn btn-ghost btn-sm" onClick={close}><Icon name="x" />Close</button></div>
+          <div className="top"><span>{title}</span><button type="button" className="btn btn-quiet btn-sm" onClick={close}><Icon name="x" />Close</button></div>
           <video ref={vid} controls playsInline preload="none" poster={poster} />
         </div>
       </dialog>
@@ -52,7 +52,7 @@ export function Screens({ items, title }: { items: { src: string; alt: string }[
       </div>
       <dialog ref={dlg} className="modal" aria-label={title} onClick={(e) => { if (e.target === dlg.current) dlg.current?.close(); }}>
         <div className="in">
-          <div className="top"><span ref={cap} /><button type="button" className="btn btn-ghost btn-sm" onClick={() => dlg.current?.close()}><Icon name="x" />Close</button></div>
+          <div className="top"><span ref={cap} /><button type="button" className="btn btn-quiet btn-sm" onClick={() => dlg.current?.close()}><Icon name="x" />Close</button></div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img ref={img} alt="" />
         </div>
